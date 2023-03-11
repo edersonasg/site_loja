@@ -1,0 +1,26 @@
+.botao {
+    background-color: #080710;
+    width: 70%;
+    text-align: center;
+    /* top: 9%; */
+    height: 10%;
+    position: relative;
+    top: 5%;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.botao a {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 2.2;
+    text-decoration: auto;
+}
+
+.botao:hover {
+    background-color: #6a006e;
+}
+
+.botao a:hover {
+    color: white
+}
