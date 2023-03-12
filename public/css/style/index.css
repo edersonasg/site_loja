@@ -1,3 +1,45 @@
-.home {
-    background-color: white;
+.produto {
+    width: 100%;
+}
+
+.produto ul {
+    display: flex;
+    list-style: none;
+}
+
+.produto ul li a {
+    color: rgb(115, 115, 115);
+    font-size: 16px;
+}
+
+.produto nav {
+    padding-top: 2em;
+}
+
+.produto ol {
+    list-style: none;
+    display: flex;
+}
+
+.produto ol li a {
+    color: rgb(115, 115, 115);
+    text-decoration: none;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    background: none;
+    border: 0px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    line-height: 1.5;
+    outline: none;
+}
+
+.produto ol li svg {
+    color: rgb(115, 115, 115);
+    font-size: 16rem;
+    margin-left: 0rem;
+    width: 30px;
+    height: 21px;
 }
