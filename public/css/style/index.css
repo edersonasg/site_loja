@@ -1,3 +1,8 @@
+body {
+    overflow-x: hidden
+    /* TRAVA O SCROLL DA PAGINA*/
+}
+
 .produto {
     width: 100%;
 }
@@ -29,7 +34,7 @@
     align-items: center;
     background: none;
     border: 0px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Arimo', sans-serif;
     font-weight: 400;
     cursor: pointer;
     line-height: 1.5;
@@ -50,14 +55,14 @@
 
 .descricao h1 {
     font-size: 1.5em;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Arimo', sans-serif;
     font-weight: 500;
     line-height: 1.2;
     color: rgb(17, 17, 17);
 }
 
 .descricao h2 {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Arimo', sans-serif;
     font-weight: 500;
     line-height: 1.2;
     color: rgb(17, 17, 17);
@@ -65,14 +70,14 @@
 }
 
 .descricao h3 {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Arimo', sans-serif;
     color: rgb(17, 17, 17);
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.5;
 }
 
-.gCxxUS {
+.tamprod {
     width: 100%;
     height: 100%;
     top: 0px;
@@ -99,7 +104,7 @@
     border: 2px solid rgb(214, 214, 214);
     border-radius: 0.7rem;
     color: rgb(17, 17, 17);
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Arimo', sans-serif;
     font-size: 1rem;
     line-height: 1;
     font-weight: 550;
@@ -127,4 +132,62 @@
     justify-content: center;
     width: 100%;
     cursor: inherit;
+}
+
+.tamanhos:hover {
+    border-color: #363636;
+    font-weight: 600;
+}
+
+.selecionado {
+    border-color: #363636;
+}
+
+.comprar {
+    text-decoration: none;
+    background-color: #363636;
+    padding: 1rem 4rem;
+    border-radius: 10rem;
+    color: white;
+    font-size: 1rem;
+    font-family: 'Arimo', sans-serif;
+    font-weight: 500;
+}
+
+.comprar:hover {
+    background-image: linear-gradient(to right, #363636, #535353, #838383, #aaaaaa);
+    color: white;
+}
+
+.linhaComprar {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+footer {
+    background-color: #363636;
+    height: 12em;
+}
+
+footer p {
+    color: white;
+    font-family: 'Arimo', sans-serif;
+    font-size: 0.7rem;
+}
+
+.linhaquemsomos {
+    padding: 2em;
+}
+
+.quemsomos {
+    padding-top: 2rem;
+    color: white;
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Arimo', sans-serif;
+}
+
+footer ul {
+    list-style: none;
 }
