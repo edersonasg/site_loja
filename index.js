@@ -18,6 +18,10 @@ app.get('/', (req, res) => {
     return res.render("index")
 });
 
+app.get('/produto', (req, res) => {
+    return res.render("produto")
+});
+
 
 //LOG
 app.listen(port, () => (

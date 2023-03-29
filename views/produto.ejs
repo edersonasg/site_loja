@@ -1,0 +1,125 @@
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Home</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style/produto.css">
+    <link rel="stylesheet" href="/css/style/nav.css">
+    <link rel="stylesheet" href="/css/style/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <%- include('nav.ejs') %>
+        <section>
+            <div class="container produto">
+                <div class="row">
+                    <nav aria-label="Links visitados">
+                        <ol class="Breadcrumb-styled__List-sc-bfc9ea9f-0 ickcoV">
+                            <li><a href="https://www.nike.com.br/sc/masculino-1">Masculino</a><svg data-testid="ArrowRightIcon" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor"
+                                    viewBox="0 0 24 24" class="SvgIcon__Icon-sc-9dg20d-0 SvgIcon-sc-9dg20d-1 ClUqg sUzXt"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 12.0027C15.9993 12.2533 15.9065 12.4822 15.7537 12.6573L9.76541 19.6436C9.58197 19.8615 9.30716 20 9 20C8.44772 20 8 19.5523 8 19C8 18.7515 8.09067 18.5241 8.24075 18.3492L13.6829 12L8.24631 5.65725C8.09292 5.4815 8 5.2516 8 5C8 4.44771 8.44772 4 9 4C9.30374 4 9.57586 4.13542 9.75926 4.34917L15.7593 11.3492L15.7653 11.3563C15.9106 11.5289 15.9986 11.7512 16 11.9941L16 12L16 12.0027Z"></path></svg></li>
+                            <li><a href="https://www.nike.com.br/nav/genero/masculino/idade/adulto/tipodeproduto/roupas">Roupas</a><svg data-testid="ArrowRightIcon" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    fill="currentColor" viewBox="0 0 24 24" class="SvgIcon__Icon-sc-9dg20d-0 SvgIcon-sc-9dg20d-1 ClUqg sUzXt"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 12.0027C15.9993 12.2533 15.9065 12.4822 15.7537 12.6573L9.76541 19.6436C9.58197 19.8615 9.30716 20 9 20C8.44772 20 8 19.5523 8 19C8 18.7515 8.09067 18.5241 8.24075 18.3492L13.6829 12L8.24631 5.65725C8.09292 5.4815 8 5.2516 8 5C8 4.44771 8.44772 4 9 4C9.30374 4 9.57586 4.13542 9.75926 4.34917L15.7593 11.3492L15.7653 11.3563C15.9106 11.5289 15.9986 11.7512 16 11.9941L16 12L16 12.0027Z"></path></svg></li>
+                            <li><a href="https://www.nike.com.br/nav/categorias/camisetas/genero/masculino/idade/adulto/tipodeproduto/roupas">Camisetas</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <ul>
+                            <li>
+                                <a href="images/clippersFrente.png"></a>
+                                <img src="/images/clippersFrente.png" alt="" width="400px" height="450px">
+                            </li>
+                            <li>
+
+                                <a href="images/clippersVerso.png"></a>
+                                <img src="/images/clippersVerso.png" alt="" width="400px" height="450px">
+                            </li>
+                            <li>
+                                <a href="images/clippersFrente.png"></a>
+                                <img src="/images/clippersFrente.png" alt="" width="400px" height="450px">
+                            </li>
+                            <li>
+
+                                <a href="images/clippersVerso.png"></a>
+                                <img src="/images/clippersVerso.png" alt="" width="400px" height="450px">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 descricao">
+                        <p>Basquete</p>
+                        <h1>Camiseta Nike LA Clippers Next Nature Masculina</h1>
+                        <h2>R$ 270,00</h2>
+                        <h3>ou 10x de R$ 27,00</h3>
+                        <div class="row selectTamanho">
+                            <div class="col-md-5 col-sm-12">
+                                <span class="tamanhos esgotado" id="tamanhopp">
+                                <label for="pp" class="tam">
+                                    <input id="pp" type="radio" name="size" data-testid="product-size-PP" class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhopp" onclick="selecionado(id)">
+                                    PP
+                                </label>
+                               </span>
+                            </div>
+                            <div class="col-md-5 col-sm-12">
+                                <span class="tamanhos" id="tamanhop">
+                                <label for="p" class="tam">
+                                    <input id="p" type="radio" name="size" data-testid="product-size-p" class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhop" onclick="selecionado(id)">
+                                    P
+                                </label>
+                               </span>
+                            </div>
+                            <div class="col-md-5 col-sm-12">
+                                <span class="tamanhos" id="tamanhom">
+                                <label for="m">
+                                    <input id="m" type="radio"  name="size" data-testid="product-size-m" class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhom" onclick="selecionado(id)">
+                                    M
+                                </label>
+                               </span>
+                            </div>
+                            <div class="col-md-5 col-sm-12">
+                                <span class="tamanhos" id="tamanhog">
+                                <label for="g">
+                                    <input id="g" type="radio" name="size" data-testid="product-size-g" class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhog" onclick="selecionado(id)">
+                                    G
+                                </label>
+                               </span>
+                            </div>
+                        </div>
+                        <div class="row linhaComprar">
+                            <div class="col-md-10">
+                                <a class="comprar" href="#">COMPRAR</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <%- include('footer.ejs') %>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js " integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk " crossorigin="anonymous "></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js " integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK " crossorigin="anonymous "></script>
+<script src="/js/bootstrap.min.js "></script>
+
+<script>
+    function selecionado(valor) {
+        var set = document.getElementsByClassName("selecionado");
+        if (set.length != 0) {
+            var idset = set[0].classList.remove("selecionado");
+        }
+        var idfilho = document.getElementById(valor).value;
+        var tamanho = document.getElementById(idfilho);
+        tamanho.classList.add("selecionado");
+
+    }
+</script>
+
+</html>
