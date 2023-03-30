@@ -1,0 +1,16 @@
+.folder {
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+
+.descontos {
+    margin-left: 5em;
+}
+
+.descontos p {
+    font-family: 'Arimo', serif;
+}
+
+.descProd {
+    display: flex !important;
+}
