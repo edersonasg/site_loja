@@ -11,6 +11,88 @@
     font-family: 'Arimo', serif;
 }
 
-.descProd {
+.fotosDescontos ul {
     display: flex !important;
+    overflow-x: auto !important;
+    list-style: none;
+}
+
+.fotosDescontos ul li {
+    padding-right: 2em;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+    /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+    background: #3636363a;
+    /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #c08e0471;
+    /* color of the scroll thumb */
+    border-radius: 10px;
+    /* roundness of the scroll thumb */
+    border: 3px solid #fff;
+    /* creates padding around scroll thumb */
+}
+
+.fotosDescontos ul::-webkit-scrollbar {
+    width: 5px;
+    /* width of the entire scrollbar */
+}
+
+.fotosDescontos ul::-webkit-scrollbar-track {
+    background: #3636363a;
+    /* color of the tracking area */
+}
+
+.fotosDescontos ul::-webkit-scrollbar-thumb {
+    background-color: #c08e0471;
+    /* color of the scroll thumb */
+    border-radius: 10px;
+    /* roundness of the scroll thumb */
+    border: 3px solid #fff;
+    /* creates padding around scroll thumb */
+}
+
+.ofertas {
+    margin-left: 5em;
+}
+
+.ofertas p {
+    font-family: 'Arimo', serif;
+}
+
+.fotosOfertas ul {
+    display: flex !important;
+    overflow-x: auto !important;
+    list-style: none;
+    justify-content: center;
+}
+
+.fotosOfertas ul li {
+    padding-right: 2em;
+}
+
+.fotosOfertas ul::-webkit-scrollbar {
+    width: 5px;
+    /* width of the entire scrollbar */
+}
+
+.fotosOfertas ul::-webkit-scrollbar-track {
+    background: #3636363a;
+    /* color of the tracking area */
+}
+
+.fotosOfertas ul::-webkit-scrollbar-thumb {
+    background-color: #c08e0471;
+    /* color of the scroll thumb */
+    border-radius: 10px;
+    /* roundness of the scroll thumb */
+    border: 3px solid #fff;
+    /* creates padding around scroll thumb */
 }

@@ -22,6 +22,9 @@ app.get('/produto', (req, res) => {
     return res.render("produto")
 });
 
+app.get('/carrinho', (req, res) => {
+    return res.render("carrinho")
+});
 
 //LOG
 app.listen(port, () => (
