@@ -1,4 +1,4 @@
-<nav class="nav">
+<!--<nav class="nav">
     <div class="container menu">
         <div class="row">
             <div class=" col-2 logo">
@@ -56,3 +56,85 @@
         </div>
     </div>
 </nav>
+
+!-->
+
+<div class="nav">
+    <div class="container-fluid menu">
+        <div class="row">
+            <div class="col-sm-2 col-md-3 col-4 logo">
+                <a href="/"><img src="/images/logo1.png" width="75px" alt=""></a>
+            </div>
+            <div class="col-8 auto main_list" id="mainListDiv">
+                <ul class="principalMenu">
+                    <li><a href="/">Inicio</a></li>
+                    <li>
+                        <a href="/usuarios">Masculino</a>
+                        <ul class="submenu">
+                            <li><a href="#">Calças</a></li>
+                            <li><a href="#">Blusas</a></li>
+                            <li><a href="#">Camisetas</a></li>
+                            <li><a href="#">Meias</a></li>
+                            <li><a href="#">Shorts</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/cadastro">Feminino</a>
+                        <ul class="submenu">
+                            <li><a href="#">Calças</a></li>
+                            <li><a href="#">Blusas</a></li>
+                            <li><a href="#">Camisetas</a></li>
+                            <li><a href="#">Meias</a></li>
+                            <li><a href="#">Shorts</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Infantil</a>
+                        <ul class="submenu">
+                            <li><a href="#">Calças</a></li>
+                            <li><a href="#">Blusas</a></li>
+                            <li><a href="#">Camisetas</a></li>
+                            <li><a href="#">Meias</a></li>
+                            <li><a href="#">Shorts</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-8">
+                <div class="iconeMenu">
+                    <span onclick="abrirMenu();" class="material-icons">
+                        menu
+                    </span>
+                </div>
+                <div>
+                    <ul id="menuMobile" class="menuMobile">
+                        <li onclick="fecharMenu();"><span class="material-icons">
+                            close
+                            </span></li>
+                        <li><a href="/">Inicio</a></li>
+                        <li>
+                            <a href="/usuarios">Masculino</a>
+                        </li>
+                        <li>
+                            <a href="/cadastro">Feminino</a>
+                        </li>
+                        <li>
+                            <a href="#">Infantil</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function abrirMenu() {
+            var menu = document.getElementById("menuMobile");
+            menu.style.right = "0";
+        }
+
+        function fecharMenu() {
+            var menu = document.getElementById("menuMobile");
+            menu.style.right = "600px";
+        }
+    </script>
+</div>

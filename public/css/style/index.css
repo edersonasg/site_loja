@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 .folder {
     margin-top: 3em;
     margin-bottom: 3em;

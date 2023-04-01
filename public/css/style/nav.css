@@ -1,38 +1,14 @@
-/* Navbar section */
-
 .menu {
-    overflow-x: hidden;
+    background-color: #27A71F;
 }
 
-.nav {
-    width: 100%;
-    height: 50px;
-    line-height: 65px;
-    text-align: center;
-    background-color: #363636;
+.logo {
+    display: flex;
+    justify-content: center;
 }
 
-
-/*
-.nav div.logo {
-    position: absolute;
-}
-*/
-
-.nav div.logo a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.8em;
-    text-transform: uppercase;
-}
-
-.nav div.logo a:hover {
-    color: #c0c0c0;
-}
-
-.nav div.col-10.main_list {
-    left: 15%;
-    position: relative;
+.submenu {
+    display: none;
 }
 
 .principalMenu {
@@ -43,59 +19,92 @@
 .principalMenu li {
     font-family: 'Arimo', sans-serif;
     height: 50px;
+    padding-bottom: 3.5em;
 }
 
 .principalMenu li a {
     text-decoration: none;
     color: white;
     text-transform: uppercase;
-    padding: 1rem 3rem;
+    padding: 2rem 3rem;
     position: relative;
-    top: -7px;
-}
-
-.principalMenu li a:hover {
-    color: #ffeebe;
-}
-
-.principalMenu li:hover {
-    border-bottom: 5px solid #c08e04;
-    ;
+    top: 20px;
 }
 
 .principalMenu li:hover ul {
     display: block;
 }
 
-.submenu {
-    background-color: #363636;
-    display: none;
-    list-style: none;
-    flex-direction: column;
-    top: 3em;
-    position: absolute;
+.principalMenu li:hover>a {
+    color: black;
 }
 
-.submenu li {
-    position: relative;
+.submenu {
+    background-color: #27A71F;
+    display: none;
+    list-style: none;
+    flex-direction: row;
+    top: 3em;
+    position: absolute;
+    z-index: 4;
+}
+
+.submenu li:hover a {
+    color: black;
+}
+
+.iconeMenu {
+    display: none;
+}
+
+.menuMobile {
+    display: none;
 }
 
 @media screen and (max-width: 730px) {
     .main_list {
         display: none;
     }
-    .menuMobile {
-        width: 80%;
+    .logo {
+        display: block;
+    }
+    .iconeMenu {
         display: flex;
         flex-direction: row-reverse;
+        align-content: center;
+        flex-wrap: wrap;
+        height: 4em;
     }
-    .menuMobile button {
-        height: 3em;
-        width: 3em;
+    .iconeMenu span {
+        font-size: 2em;
+        color: white;
     }
-    .menuMobile ul {
+    .menuMobile {
+        width: 60%;
         list-style: none;
-        background: blue;
-        width: 100%;
+        position: absolute;
+        background-color: #000000ed;
+        top: 0;
+        right: 600;
+        padding-top: 2em;
+        z-index: 5;
+        padding-bottom: 1em;
+        border: 1px solid black;
+        height: 100%;
+        display: block;
+        transition: all 1s ease;
+    }
+    .menuMobile li {
+        font-family: 'Arimo', sans-serif;
+        padding-right: 2em;
+        padding-bottom: 1em;
+    }
+    .menuMobile a {
+        text-decoration: none;
+        color: white;
+        text-transform: uppercase;
+    }
+    .menuMobile span {
+        color: #27A71F;
     }
 }

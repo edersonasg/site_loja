@@ -1,0 +1,15 @@
+{
+    "name": "Garb",
+    "short_name": "Garb",
+    "theme_color": "#27a71f",
+    "background_color": "#27a71f",
+    "display": "fullscreen",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [{
+        "src": "/images/logo1.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }]
+}
