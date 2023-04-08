@@ -1,0 +1,202 @@
+.buscaefiltro {
+    background-color: #7DE64B;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+
+.buscaefiltro input[type=text] {
+    background: #A6A6A6;
+    border: 1px solid #A6A6A6;
+    border-radius: 1em;
+    padding-left: 2.5em;
+    height: 2em;
+    width: 100%;
+    color: white;
+    transition: all 1s ease;
+}
+
+.buscaefiltro input[type=text]::placeholder {
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Arimo', sans-serif;
+}
+
+.buscaefiltro input[type=text]:focus {
+    width: 300%;
+    transition: all 1s ease;
+    border: 1px solid white;
+}
+
+.buscaefiltro input[type=text]:focus>span {
+    left: 20em;
+    margin-top: -25px;
+}
+
+.buscar {
+    background: #a6a6a6;
+    width: 23%;
+    border-radius: 2em;
+    margin-left: 5em;
+}
+
+.buscar span {
+    position: relative;
+    left: 0.5em;
+    margin-top: -1.1em;
+    color: white;
+    font-size: 22px;
+}
+
+.linhafiltro {
+    border-bottom: 0.13em solid white;
+}
+
+.quadros {
+    border-right: 0.13em solid white;
+    padding-bottom: 1.5em;
+}
+
+.filtragem {
+    display: flex;
+    flex-direction: row-reverse;
+    left: 1em;
+    padding-right: 15em
+}
+
+.filtragem button {
+    background: transparent;
+    border: 0px;
+    font-family: 'Arimo', sans-serif;
+    color: white;
+}
+
+.filtragem span {
+    position: relative;
+    top: 0.2em;
+}
+
+.filtragem button:hover {
+    color: #a6a6a6;
+}
+
+.tamprod {
+    opacity: 0;
+    display: none;
+}
+
+.tamanhos {
+    background: rgb(255, 255, 255);
+    padding: 0.5rem;
+    box-sizing: border-box;
+    border: 2px solid rgb(214, 214, 214);
+    border-radius: 0.7rem;
+    color: #A6A6A6;
+    font-family: 'Arimo', sans-serif;
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 550;
+    text-transform: uppercase;
+    text-align: center;
+    overflow-wrap: break-word;
+    display: inline-flex;
+    vertical-align: middle;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out 0s;
+    position: relative;
+    cursor: pointer !important;
+    width: 80%;
+    margin-top: 0.5rem;
+}
+
+.filtros {
+    background-color: #7DE64B;
+    border-top: 0.13em solid white;
+    padding-bottom: 2em;
+}
+
+.filtros p {
+    text-align: center;
+    color: white;
+    padding-top: 1em;
+    font-weight: 600;
+}
+
+.quadrotamanhos {
+    margin-left: 2.5em;
+}
+
+.tamanhos:hover {
+    border-color: #363636;
+    font-weight: 600;
+}
+
+.selecionado {
+    border-color: #363636;
+}
+
+.selecionado label {
+    color: black;
+}
+
+.listapreco {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+}
+
+.sq-radio {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 1em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: 'Arimo', sans-serif;
+    color: white;
+}
+
+.sq-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.3em;
+    height: 1.3em;
+    border-radius: 5px;
+    background-color: #7de64b;
+    border: 3px solid white;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.sq-radio input:checked~.checkmark:after {
+    display: block;
+}
+
+.sq-radio .checkmark:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+    background-color: #a6a6a6;
+}
+
+.precoselecionado {
+    color: #A6A6A6;
+}

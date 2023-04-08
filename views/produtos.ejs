@@ -1,0 +1,122 @@
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <title>Produtos</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style/produtos.css">
+    <link rel="stylesheet" href="/css/style/nav.css">
+    <link rel="stylesheet" href="/css/style/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <%- include('nav.ejs') %>
+        <div class="container-fluid buscaefiltro">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="buscar">
+                        <input type="text" placeholder="Buscar" name="busca"><span class="material-icons">search</span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="filtragem">
+                        <button>Filtros <span class="material-icons">tune</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid filtros">
+            <div class="row linhafiltro">
+                <div class="col-md-3 quadros">
+                    <P>Tamanho</P>
+                    <div class="row quadrotamanhos">
+                        <div class="col-md-5" style="
+                        display: flex;
+                        justify-content: flex-end;">
+                            <span class=" tamanhos " id="tamanhop" onclick="selecionado(id) ">
+                                <label for="p" class="tam">
+                                    <input id="p" type="radio " name="size " data-testid="product-size-p " class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod " value="tamanhop" >
+                                    P
+                                </label>
+                               </span>
+                        </div>
+                        <div class="col-md-5">
+                            <span class="tamanhos " id="tamanhom" onclick="selecionado(id) ">
+                                <label for="m" class="tam ">
+                                    <input id="m" type="radio " name="size " data-testid="product-size-p " class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod " value="tamanhom" >
+                                    M
+                                </label>
+                               </span>
+                        </div>
+                        <div class="col-md-5" style="
+                        display: flex;
+                        justify-content: flex-end;">
+                            <span class="tamanhos " id="tamanhog" onclick="selecionado(id) ">
+                                <label for="g" class="tam "> 
+                                    <input id="g" type="radio " name="size " data-testid="product-size-p " class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod " value="tamanhog">
+                                    G
+                                </label>
+                               </span>
+                        </div>
+                        <div class="col-md-5 ">
+                            <span class="tamanhos " id="tamanhogg" onclick="selecionado(id) ">
+                                <label for="gg" class="tam ">
+                                    <input id="gg" type="radio " name="size " data-testid="product-size-p " class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod " value="tamanhogg" >
+                                    GG
+                                </label>
+                               </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 quadros">
+                    <P>Preço</P>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="listapreco">
+                                <li><label class="sq-radio" id="50" for="ate50" onclick="pegarpreco(id)"><input id="ate50" name="preco" type="radio">Até R$ 50,00<span class="checkmark"></span></label></li>
+                                <li><label class="sq-radio" id="100" for="ate100" onclick="pegarpreco(id)"><input id="ate100" name="preco" type="radio">Até R$ 100,00 <span class="checkmark"></span></label></li>
+                                <li><label class="sq-radio" id="150" for="ate150" onclick="pegarpreco(id)"><input id="ate150" name="preco" type="radio">Até R$ 150,00<span class="checkmark"></span></label></li>
+                                <li><label class="sq-radio" id="200" for="ate200" onclick="pegarpreco(id)"><input id="ate200" name="preco" type="radio">Até R$ 200,00<span class="checkmark"></span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 quadros">
+                    <P>Marca</P>
+                </div>
+                <div class="col-md-3 ">
+                    <P>Categoria</P>
+                </div>
+            </div>
+        </div>
+</body>
+<script>
+    function selecionado(valor) {
+        var set = document.getElementsByClassName("selecionado");
+        if (set.length != 0) {
+            var idset = set[0].classList.remove("selecionado");
+        }
+        var idfilho = document.getElementById(valor);
+        idfilho.classList.add("selecionado");
+
+    }
+
+    function pegarpreco(id) {
+        var set = document.getElementsByClassName("precoselecionado");
+        if (set.length != 0) {
+            var idset = set[0].classList.remove("precoselecionado");
+        }
+        var idfilho = document.getElementById(id);
+        idfilho.classList.add("precoselecionado");
+
+    }
+</script>
+
+</html>

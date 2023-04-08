@@ -55,7 +55,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .fotosDescontos ul::-webkit-scrollbar-thumb {
-    background-color: #c08e0471;
+    background-color: #8ae22571;
     /* color of the scroll thumb */
     border-radius: 10px;
     /* roundness of the scroll thumb */

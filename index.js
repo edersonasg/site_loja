@@ -22,6 +22,10 @@ app.get('/produto', (req, res) => {
     return res.render("produto")
 });
 
+app.get('/produtos', (req, res) => {
+    return res.render("produtos")
+});
+
 app.get('/carrinho', (req, res) => {
     return res.render("carrinho")
 });
