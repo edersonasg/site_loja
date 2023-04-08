@@ -27,12 +27,12 @@
                 </div>
                 <div class="col-md-6">
                     <div class="filtragem">
-                        <button>Filtros <span class="material-icons">tune</span></button>
+                        <button onclick="abrirfiltros();">Filtros <span class="material-icons">tune</span></button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container-fluid filtros">
+        <div class="container-fluid filtros" id="filtros">
             <div class="row linhafiltro">
                 <div class="col-md-3 quadros">
                     <P>Tamanho</P>
@@ -90,9 +90,41 @@
                 </div>
                 <div class="col-md-3 quadros">
                     <P>Marca</P>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="listamarca">
+                                <li><label class="mc-radio" id="nike" for="nk" onclick="pegarmarca(id)"><input id="nk" name="marca" type="radio">Nike<span class="checkmark"></span></label></li>
+                                <li><label class="mc-radio" id="adidas" for="ad" onclick="pegarmarca(id)"><input id="ad" name="marca" type="radio">Adidas<span class="checkmark"></span></label></li>
+                                <li><label class="mc-radio" id="lacoste" for="lc" onclick="pegarmarca(id)"><input id="lc" name="marca" type="radio">Lacoste<span class="checkmark"></span></label></li>
+                                <li><label class="mc-radio" id="garb" for="gb" onclick="pegarmarca(id)"><input id="gb" name="marca" type="radio">Garb<span class="checkmark"></span></label></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-3 ">
                     <P>Categoria</P>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="listacategoria">
+                                <li><label class="ct-radio" id="Calças" for="calcas" onclick="pegarcategoria(id)"><input id="calcas" name="categoria" type="radio">Calças<span class="checkmark"></span></label></li>
+                                <li><label class="ct-radio" id="Blusas" for="blusas" onclick="pegarcategoria(id)"><input id="blusas" name="categoria" type="radio">Blusa<span class="checkmark"></span></label></li>
+                                <li><label class="ct-radio" id="Camisetas" for="camisetas" onclick="pegarcategoria(id)"><input id="camisetas" name="categoria" type="radio">Camisetas<span class="checkmark"></span></label></li>
+                                <li><label class="ct-radio" id="Shorts" for="shorts" onclick="pegarcategoria(id)"><input id="shorts" name="categoria" type="radio">Shorts<span class="checkmark"></span></label></li>
+                                <li><label class="ct-radio" id="Meias" for="meias" onclick="pegarcategoria(id)"><input id="meias" name="categoria" type="radio">Meias<span class="checkmark"></span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row linhabotoesfiltros">
+                <div class="col-md-4 quadrolimpar">
+                    <button>Limpar</button>
+                </div>
+                <div class="col-md-4 quadrofechar">
+                    <span class="material-icons" onclick="fecharfiltros();">keyboard_control_key</span>
+                </div>
+                <div class="col-md-4 quadroatualizar">
+                    <button>Atualizar</button>
                 </div>
             </div>
         </div>
@@ -116,6 +148,36 @@
         var idfilho = document.getElementById(id);
         idfilho.classList.add("precoselecionado");
 
+    }
+
+    function pegarmarca(id) {
+        var set = document.getElementsByClassName("marcaselecionada");
+        if (set.length != 0) {
+            var idset = set[0].classList.remove("marcaselecionada");
+        }
+        var idfilho = document.getElementById(id);
+        idfilho.classList.add("marcaselecionada");
+
+    }
+
+    function pegarcategoria(id) {
+        var set = document.getElementsByClassName("categoriaselecionada");
+        if (set.length != 0) {
+            var idset = set[0].classList.remove("categoriaselecionada");
+        }
+        var idfilho = document.getElementById(id);
+        idfilho.classList.add("categoriaselecionada");
+
+    }
+
+    function abrirfiltros() {
+        var filtro = document.getElementById("filtros");
+        filtro.style.top = "0";
+    }
+
+    function fecharfiltros() {
+        var filtro = document.getElementById("filtros");
+        filtro.style.top = "-35em";
     }
 </script>
 

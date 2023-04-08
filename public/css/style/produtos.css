@@ -114,7 +114,9 @@
 .filtros {
     background-color: #7DE64B;
     border-top: 0.13em solid white;
-    padding-bottom: 2em;
+    top: -35em;
+    position: relative;
+    transition: all 1s ease;
 }
 
 .filtros p {
@@ -141,14 +143,19 @@
     color: black;
 }
 
-.listapreco {
+.listapreco,
+.listamarca,
+.listacategoria {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     list-style: none;
+    margin-left: 2em;
 }
 
-.sq-radio {
+.sq-radio,
+.mc-radio,
+.ct-radio {
     display: block;
     position: relative;
     padding-left: 35px;
@@ -163,7 +170,9 @@
     color: white;
 }
 
-.sq-radio input {
+.sq-radio input,
+.mc-radio input,
+.ct-radio input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -190,6 +199,14 @@
     display: block;
 }
 
+.mc-radio input:checked~.checkmark:after {
+    display: block;
+}
+
+.ct-radio input:checked~.checkmark:after {
+    display: block;
+}
+
 .sq-radio .checkmark:after {
     width: 15px;
     height: 15px;
@@ -197,6 +214,70 @@
     background-color: #a6a6a6;
 }
 
-.precoselecionado {
+.mc-radio .checkmark:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+    background-color: #a6a6a6;
+}
+
+.ct-radio .checkmark:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+    background-color: #a6a6a6;
+}
+
+.precoselecionado,
+.marcaselecionada,
+.categoriaselecionada {
     color: #A6A6A6;
+}
+
+.linhabotoesfiltros {
+    padding-top: 1em;
+}
+
+.quadroatualizar {
+    display: flex;
+    justify-content: flex-end;
+    right: 4em;
+    position: relative;
+}
+
+.quadroatualizar button {
+    border: 0.13em solid white;
+    background: #a6a6a6;
+    border-radius: 0.8em;
+    padding: 0 0.7em;
+    font-family: 'Arimo', sans-serif;
+    color: white;
+    height: 2em;
+}
+
+.quadrolimpar {
+    display: flex;
+    left: 2em;
+    position: relative;
+}
+
+.quadrolimpar button {
+    border: 0.13em solid #27a71f;
+    background: white;
+    border-radius: 0.8em;
+    padding: 0 0.7em;
+    font-family: 'Arimo', sans-serif;
+    color: #27a71f;
+    height: 2em;
+}
+
+.quadrofechar {
+    display: flex;
+    justify-content: center;
+}
+
+.quadrofechar span {
+    font-size: 4em;
+    color: #27a71f;
+    cursor: pointer;
 }
