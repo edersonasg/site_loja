@@ -128,6 +128,55 @@
                 </div>
             </div>
         </div>
+        <div class="container-fluid produtos">
+            <div class="row">
+                <div class="col-md-3 quadproduto">
+                    <a href="/produto?id=0001"><img src="/images/produto1.png" width="300px" height="300px" alt="produto1">
+                        <h2 class="nomeproduto">Camiseta Nike Sportswear Club Masculina </h2>
+                        <p class="precoproduto">R$ 99,99</p>
+                        <p class="descontoproduto">17% off</p>
+                    </a>
+                </div>
+                <div class="col-md-3 quadproduto">
+                    <a href="/produto"><img src="/images/produto2.png" width="300px" height="300px" alt="produto2">
+                        <h2 class="nomeproduto">Camiseta Nike Sportswear Club Masculina Poá</h2>
+                        <p class="precoproduto">R$ 99,99</p>
+                        <p class="parcelaproduto">ou 6x de R$ 66,67</p>
+                    </a>
+                </div>
+                <div class="col-md-3 quadproduto">
+                    <a href="/produto"><img src="/images/produto3.png" width="300px" height="300px" alt="produto3">
+                        <h2 class="nomeproduto">Bermuda Lacoste MH9661</h2>
+                        <p class="precoproduto">R$ 490,00</p>
+                        <p class="descontoproduto">17% off à vista</p>
+                        <p class="parcelaproduto">ou 10x de R$ 49,00</p>
+                    </a>
+                </div>
+                <div class="col-md-3 quadproduto">
+                    <a href="/produto"><img src="/images/modelo1.png" width="300px" height="300px" alt="produto1">
+                        <h2 class="nomeproduto">Camiseta Nike Sportswear Club Masculina </h2>
+                        <p class="precoproduto">R$ 99,99</p>
+                        <p class="descontoproduto">17% off</p>
+                    </a>
+                </div>
+                <div class="col-md-3 quadproduto">
+                    <a href="/produto"><img src="/images/produto4.png" width="300px" height="300px" alt="produto1">
+                        <h2 class="nomeproduto">Calça de Brigo Lacoste</h2>
+                        <p class="precoproduto">R$ 690,00</p>
+                        <p class="parcelaproduto">ou 10x de R$ 69,00</p>
+                    </a>
+                </div>
+                <div class="col-md-3 quadproduto">
+                    <a href="/produto"><img src="/images/produto5.png" width="300px" height="300px" alt="produto1">
+                        <h2 class="nomeproduto">Bermuda Diesel</h2>
+                        <p class="precoproduto">R$ 695,00</p>
+                        <p class="descontoproduto">20% off à vista</p>
+                        <p class="parcelaproduto">ou 10x de R$ 69,50</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <%- include('footer.ejs') %>
 </body>
 <script>
     function selecionado(valor) {
@@ -172,7 +221,7 @@
 
     function abrirfiltros() {
         var filtro = document.getElementById("filtros");
-        filtro.style.top = "0";
+        filtro.style.top = "9.5em";
     }
 
     function fecharfiltros() {

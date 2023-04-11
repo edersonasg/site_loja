@@ -115,7 +115,7 @@
     background-color: #7DE64B;
     border-top: 0.13em solid white;
     top: -35em;
-    position: relative;
+    position: absolute;
     transition: all 1s ease;
 }
 
@@ -280,4 +280,53 @@
     font-size: 4em;
     color: #27a71f;
     cursor: pointer;
+}
+
+.produtos {
+    padding-bottom: 5em;
+}
+
+.produtos a {
+    text-decoration: none;
+}
+
+.produtos a:hover img {
+    border: 0.13em solid #27a71f;
+}
+
+.produtos a:hover h2 {
+    text-decoration: underline 0.20em solid #27a71f;
+}
+
+.quadproduto {
+    padding-top: 3em;
+}
+
+.nomeproduto {
+    font-family: 'Arimo', sans-serif;
+    color: black;
+    font-weight: 600;
+    font-size: 1em;
+    width: 80%;
+}
+
+.precoproduto {
+    height: 7px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    color: #706d6d;
+}
+
+.descontoproduto {
+    height: 7px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.9em;
+    color: #7DE64B;
+}
+
+.parcelaproduto {
+    height: 7px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.9em;
+    color: #B51125;
 }
