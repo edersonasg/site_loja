@@ -57,11 +57,29 @@
     display: none;
 }
 
+.menuSmartphone {
+    display: none;
+}
+
 .menuMobile {
     display: none;
 }
 
+.car span {
+    color: white;
+    font-size: 3.5em;
+    top: 0.5em;
+    margin-top: 0.2em;
+    margin-left: 2em;
+}
+
 @media screen and (max-width: 730px) {
+    .menuDesktop {
+        display: none;
+    }
+    .menuSmartphone {
+        display: flex;
+    }
     .main_list {
         display: none;
     }
@@ -70,14 +88,13 @@
     }
     .iconeMenu {
         display: flex;
-        flex-direction: row-reverse;
-        align-content: center;
-        flex-wrap: wrap;
+        flex-direction: row;
         height: 4em;
     }
     .iconeMenu span {
-        font-size: 2em;
+        font-size: 2.5em;
         color: white;
+        padding-top: 0.5em;
     }
     .menuMobile {
         width: 60%;
@@ -85,7 +102,7 @@
         position: absolute;
         background-color: #000000ed;
         top: 0;
-        right: 600;
+        left: -30em;
         padding-top: 2em;
         z-index: 5;
         padding-bottom: 1em;
@@ -106,5 +123,12 @@
     }
     .menuMobile span {
         color: #27A71F;
+    }
+    .car span {
+        color: white;
+        font-size: 3.5em;
+        top: 0.5em;
+        margin-top: 0.2em;
+        margin-left: 1em;
     }
 }

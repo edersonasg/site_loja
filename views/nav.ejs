@@ -61,11 +61,11 @@
 
 <div class="nav">
     <div class="container-fluid menu">
-        <div class="row">
+        <div class="row menuDesktop">
             <div class="col-sm-2 col-md-3 col-4 logo">
                 <a href="/"><img src="/images/logo1.png" width="75px" alt=""></a>
             </div>
-            <div class="col-8 auto main_list" id="mainListDiv">
+            <div class="col-6 auto main_list" id="mainListDiv">
                 <ul class="principalMenu">
                     <li><a href="/">Inicio</a></li>
                     <li>
@@ -100,7 +100,12 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-8">
+            <div class="col-sm-2 col-md-3 col-4 car">
+                <span class="material-icons">shopping_cart</span>
+            </div>
+        </div>
+        <div class="row menuSmartphone">
+            <div class="col-4">
                 <div class="iconeMenu">
                     <span onclick="abrirMenu();" class="material-icons">
                         menu
@@ -124,17 +129,23 @@
                     </ul>
                 </div>
             </div>
+            <div class="col-4 logo">
+                <a href="/"><img src="/images/logo1.png" width="75px" alt=""></a>
+            </div>
+            <div class="col-4 car">
+                <span class="material-icons">shopping_cart</span>
+            </div>
         </div>
     </div>
     <script>
         function abrirMenu() {
             var menu = document.getElementById("menuMobile");
-            menu.style.right = "0";
+            menu.style.left = "0";
         }
 
         function fecharMenu() {
             var menu = document.getElementById("menuMobile");
-            menu.style.right = "600px";
+            menu.style.left = "-30em";
         }
     </script>
 </div>

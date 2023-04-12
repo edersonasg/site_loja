@@ -130,6 +130,11 @@
     margin-left: 2.5em;
 }
 
+.quadcentralizar {
+    display: flex;
+    justify-content: flex-end
+}
+
 .tamanhos:hover {
     border-color: #363636;
     font-weight: 600;
@@ -302,6 +307,11 @@
     padding-top: 3em;
 }
 
+.quadproduto img {
+    width: 300px;
+    height: 300px;
+}
+
 .nomeproduto {
     font-family: 'Arimo', sans-serif;
     color: black;
@@ -329,4 +339,50 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.9em;
     color: #B51125;
+}
+
+@media screen and (max-width: 730px) {
+    .filtros {
+        background-color: #7DE64B;
+        border-top: 0.13em solid white;
+        top: -75em;
+        position: absolute;
+        transition: all 1s ease;
+    }
+    .quadcentralizar {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .quadroatualizar {
+        display: flex;
+        justify-content: flex-end;
+        right: 2em;
+        position: relative;
+    }
+    .buscar {
+        background: #a6a6a6;
+        width: 100%;
+        border-radius: 2em;
+        margin-left: 0 !important;
+    }
+    .buscaefiltro input[type=text]:focus {
+        width: 100%;
+        transition: all 1s ease;
+        border: 1px solid white;
+    }
+    .filtragem {
+        display: flex;
+        flex-direction: row-reverse;
+        left: 1em;
+        padding-right: 1em;
+        padding-top: 1em;
+    }
+    .quadproduto {
+        padding-top: 3em;
+        padding-left: 2em;
+    }
+    .quadproduto img {
+        width: 150px;
+        height: 150px;
+    }
 }
