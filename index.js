@@ -3,6 +3,12 @@ const app = express();
 const port = process.env.PORT || 8000;
 const bodyparser = require('body-parser');
 
+//chamando rota usuario
+const usuarioRoute = require('./routes/routerConsulta')
+const consultaProdutos = require('./api/api-consulta-produtos')
+    // const s3route = require('./api/api-consulta-s3')
+    //  ROTA TESTE API
+
 //CONFIGURANDO BODY-PARSER
 //app.use(bodyparser.urlencoded({ extended: false }))
 app.use(bodyparser.json())
@@ -29,6 +35,11 @@ app.get('/produtos', (req, res) => {
 app.get('/carrinho', (req, res) => {
     return res.render("carrinho")
 });
+
+//ROTA DA API
+app.use('/usersAPI', usuarioRoute);
+// app.use('/s3teste', s3route);
+app.use('/apiProdutos', consultaProdutos);
 
 //LOG
 app.listen(port, () => (

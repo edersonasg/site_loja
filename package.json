@@ -5,13 +5,15 @@
     "main": "index.js",
     "scripts": {
         "start": "node index.js",
-        "dev": "nodemon index.js",
+        "dev": "nodemon -r dotenv/config index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "EDERSON GONÇALVES",
     "license": "ISC",
     "dependencies": {
-        "aws-sdk": "^2.1358.0",
+        "@aws-sdk/client-s3": "^3.315.0",
+        "amazon-cognito-identity-js": "^6.2.0",
+        "aws-sdk": "^2.729.0",
         "body-parse": "^0.1.0",
         "body-parser": "^1.20.2",
         "dotenv-safe": "^8.2.0",

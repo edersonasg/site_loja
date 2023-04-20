@@ -45,31 +45,27 @@
 
         <%- include('footer.ejs') %>
 
-            <script>
-                var albumBucketName = 'bucketgarb';
+            <script type="text/javascript ">
+                /*
+                                                               var albumBucketName = 'bucketgarb';
+                                                            
+                                                                AWS.config.region = 'us-east-2'; // Região
+                                                                AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                                                                    IdentityPoolId: 'us-east-2:db237e02-158b-4585-9f7c-25782e6491cc',
+                                                                });
 
-                // **DO THIS**:
-                //   Replace this block of code with the sample code located at:
-                //   Cognito -- Manage Identity Pools -- [identity_pool_name] -- Sample Code -- JavaScript
-                //
-                // Initialize the Amazon Cognito credentials provider
-                AWS.config.region = 'us-east-2'; // Região
-                AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-                    IdentityPoolId: 'us-east-2:db237e02-158b-4585-9f7c-25782e6491cc',
-                });
+                                                                // Create a new service object
+                                                                var s3 = new AWS.S3({
+                                                                    apiVersion: '2006-03-01',
+                                                                    params: {
+                                                                        Bucket: albumBucketName
+                                                                    }
+                                                                });
 
-                // Create a new service object
-                var s3 = new AWS.S3({
-                    apiVersion: '2006-03-01',
-                    params: {
-                        Bucket: albumBucketName
-                    }
-                });
-
-                // A utility function to create HTML.
-                function getHtml(template) {
-                    return template.join('\n');
-                }
+                                                                // A utility function to create HTML.
+                                                                function getHtml(template) {
+                                                                    return template.join('\n');
+                                                                }*/
 
                 listAlbums();
                 //
@@ -77,7 +73,10 @@
                 //
 
                 // List the photo albums that exist in the bucket.
-                function listAlbums() {
+                async function listAlbums() {
+                    const resposta = await fetch('./s3teste');
+                    const body = await resposta.json();
+
                     s3.listObjects({
                         Delimiter: '/'
                     }, function(err, data) {
@@ -113,7 +112,10 @@
                 }
 
                 // Show the photos that exist in an album.
-                function viewAlbum(albumName) {
+                async function viewAlbum(albumName) {
+                    const resposta = await fetch('./usersAPI');
+                    const body = await resposta.json();
+                    console.log(body);
                     var albumPhotosKey = encodeURIComponent(albumName) + '/';
                     s3.listObjects({
                         Prefix: albumPhotosKey
@@ -128,6 +130,7 @@
                         var photos = data.Contents.map(function(photo) {
                             var photoKey = photo.Key;
                             var photoUrl = bucketUrl + encodeURIComponent(photoKey);
+
                             return getHtml([
                                 '<span>',
                                 '<div>',
@@ -136,7 +139,11 @@
                                 '</div>',
                                 '<div>',
                                 '<span>',
-                                photoKey.replace(albumPhotosKey, ''),
+                                body[0].Nome_Produto,
+                                '</span>',
+                                '<span>',
+                                body[0].Tamanho_Produto.Tamanho_M,
+                                body[0].Tamanho_Produto.Quantidade_M,
                                 '</span>',
                                 '</div>',
                                 '</span>',

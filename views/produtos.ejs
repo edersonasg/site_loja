@@ -137,15 +137,15 @@
             </div>
         </div>
         <div class="container-fluid produtos">
-            <div class="row">
-                <div class="col-6 col-md-3 quadproduto">
+            <div class="row" id="prods">
+                <!-- <div class="col-6 col-md-3 quadproduto">
                     <a href="/produto?id=0001"><img src="/images/produto1.png" alt="produto1">
                         <h2 class="nomeproduto">Camiseta Nike Sportswear Club Masculina </h2>
                         <p class="precoproduto">R$ 99,99</p>
                         <p class="descontoproduto">17% off</p>
                     </a>
                 </div>
-                <div class="col-6 col-md-3 quadproduto">
+               <div class="col-6 col-md-3 quadproduto">
                     <a href="/produto"><img src="/images/produto2.png" alt="produto2">
                         <h2 class="nomeproduto">Camiseta Nike Sportswear Club Masculina Poá</h2>
                         <p class="precoproduto">R$ 99,99</p>
@@ -181,7 +181,7 @@
                         <p class="descontoproduto">20% off à vista</p>
                         <p class="parcelaproduto">ou 10x de R$ 69,50</p>
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
         <%- include('footer.ejs') %>
@@ -244,8 +244,24 @@
         } else {
             filtro.style.top = "-35em";
         }
+    }
+    carregarProdutos()
+    async function carregarProdutos() {
+        const resposta = await fetch('./apiProdutos');
+        const body = await resposta.json();
+        const tam = body.length;
+        let html = '';
+        for (let i = 0; i <= tam - 1; i++) {
+            html += '<div class="col-6 col-md-3 quadproduto">';
+            html += '<a href="/produto?id=0001"><img src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[i].ID + '/produto1.png" alt="produto1">';
+            html += '<h2 class="nomeproduto">' + body[i].nome_produto + '</h2>';
+            html += '<p class="precoproduto">R$ 99,99</p>';
+            html += '<p class="descontoproduto">17% off</p>';
+            html += '</a>';
+            html += '</div>';
+        }
 
-
+        document.getElementById('prods').innerHTML = html;
     }
 </script>
 
