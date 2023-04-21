@@ -7,19 +7,18 @@ const tableName = "produtos";
 AWS.config.update(AwsConfig);
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
-async function consulta() {
+async function consulta(id) {
 
     var params = {
         TableName: tableName,
         FilterExpression: "ID = :ID",
         ExpressionAttributeValues: {
-            ":ID": 4,
+            ":ID": id,
         }
     };
 
     try {
         const dados = await dynamodb.scan(params).promise();
-        console.log(dados.Items)
         return dados.Items;
     } catch (err) {
         console.log('err', err);
@@ -28,7 +27,8 @@ async function consulta() {
 }
 
 router.get('/', async(req, res) => {
-    const dado = await consulta(req.body);
+    let id = parseInt(req.query.id);
+    const dado = await consulta(id, req.body);
     //console.log(dado);
     return res.send(dado);
 

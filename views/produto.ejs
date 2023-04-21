@@ -38,38 +38,25 @@
                         <ol class="Breadcrumb-styled__List-sc-bfc9ea9f-0 ickcoV">
                             <li><a href="/produtos">Masculino</a><svg data-testid="ArrowRightIcon" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" viewBox="0 0 24 24" class="SvgIcon__Icon-sc-9dg20d-0 SvgIcon-sc-9dg20d-1 ClUqg sUzXt"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 12.0027C15.9993 12.2533 15.9065 12.4822 15.7537 12.6573L9.76541 19.6436C9.58197 19.8615 9.30716 20 9 20C8.44772 20 8 19.5523 8 19C8 18.7515 8.09067 18.5241 8.24075 18.3492L13.6829 12L8.24631 5.65725C8.09292 5.4815 8 5.2516 8 5C8 4.44771 8.44772 4 9 4C9.30374 4 9.57586 4.13542 9.75926 4.34917L15.7593 11.3492L15.7653 11.3563C15.9106 11.5289 15.9986 11.7512 16 11.9941L16 12L16 12.0027Z"></path></svg></li>
                             <li><a href="/produtos">Roupas</a><svg data-testid="ArrowRightIcon" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" viewBox="0 0 24 24" class="SvgIcon__Icon-sc-9dg20d-0 SvgIcon-sc-9dg20d-1 ClUqg sUzXt"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 12.0027C15.9993 12.2533 15.9065 12.4822 15.7537 12.6573L9.76541 19.6436C9.58197 19.8615 9.30716 20 9 20C8.44772 20 8 19.5523 8 19C8 18.7515 8.09067 18.5241 8.24075 18.3492L13.6829 12L8.24631 5.65725C8.09292 5.4815 8 5.2516 8 5C8 4.44771 8.44772 4 9 4C9.30374 4 9.57586 4.13542 9.75926 4.34917L15.7593 11.3492L15.7653 11.3563C15.9106 11.5289 15.9986 11.7512 16 11.9941L16 12L16 12.0027Z"></path></svg></li>
-                            <li><a href="https://www.nike.com.br/nav/categorias/camisetas/genero/masculino/idade/adulto/tipodeproduto/roupas">Camisetas</a></li>
+                            <li id="subcat"></li>
                         </ol>
                     </nav>
                 </div>
                 <div class="row">
                     <div class="col-md-8">
-                        <ul class="produto">
-                            <li>
+                        <ul class="produto" id="fotoProduto">
+                            <!--<li>
                                 <a href="images/clippersFrente.png"></a>
                                 <img src="/images/clippersFrente.png" alt="" width="400px" height="450px">
-                            </li>
-                            <li>
-
-                                <a href="images/clippersVerso.png"></a>
-                                <img src="/images/clippersVerso.png" alt="" width="400px" height="450px">
-                            </li>
-                            <li>
-                                <a href="images/clippersFrente.png"></a>
-                                <img src="/images/clippersFrente.png" alt="" width="400px" height="450px">
-                            </li>
-                            <li>
-
-                                <a href="images/clippersVerso.png"></a>
-                                <img src="/images/clippersVerso.png" alt="" width="400px" height="450px">
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
                     <div class="col-md-4 descricao">
-                        <p>Basquete</p>
-                        <h1>Camiseta Nike LA Clippers Next Nature Masculina</h1>
-                        <h2>R$ 270,00</h2>
-                        <h3>ou 10x de R$ 27,00</h3>
+                        <p id="subcategoria"></p>
+                        <h1 id="nome"></h1>
+                        <h2 id="preco"></h2>
+                        <p id="desconto"></p>
+                        <h3 id="parcelamento"></h3>
                         <div class="row selectTamanho">
                             <div class="col-md-5 col-sm-12">
                                 <span class="tamanhos esgotado" id="tamanhopp">
@@ -129,6 +116,33 @@
         var idfilho = document.getElementById(valor).value;
         var tamanho = document.getElementById(idfilho);
         tamanho.classList.add("selecionado");
+
+    }
+    produto();
+    async function produto() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const CatParam = urlParams.get('id');
+        const resposta = await fetch('./apiDetalheProduto?id=' + CatParam);
+        const body = await resposta.json();
+
+        let foto = ''
+        foto += '<li>'
+        foto += '<a href="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[0].ID + '/produto1.png"></a>'
+        foto += '<img src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[0].ID + '/produto1.png" alt="" width="400px" height="450px">'
+        foto += '</li>'
+        document.getElementById('fotoProduto').innerHTML = foto;
+
+        if (body[0].desconto_produto !== 0) {
+            document.getElementById('desconto').innerHTML = body[0].desconto_produto + "% off à vista";
+        }
+
+        document.getElementById('subcategoria').innerHTML = body[0].subcategoria_produto;
+        document.getElementById('nome').innerHTML = body[0].nome_produto;
+        document.getElementById('preco').innerHTML = "R$ " + body[0].preco_produto;
+        if (body[0].parcelamento_produto) {
+            document.getElementById('parcelamento').innerHTML = "ou R$ " + body[0].parcelamento_produto;
+        }
+        document.getElementById('subcat').innerHTML = "<a  href=/produtos?categoria=" + body[0].categoria_produto + ">" + body[0].subcategoria_produto + "</a>";
 
     }
 </script>

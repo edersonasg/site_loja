@@ -7,6 +7,7 @@ const bodyparser = require('body-parser');
 //chamando rota usuario
 const usuarioRoute = require('./routes/routerConsulta')
 const consultaProdutos = require('./api/api-consulta-produtos')
+const consultaDetalheProduto = require('./api/api-consulta-detalhe-produto')
     // const s3route = require('./api/api-consulta-s3')
     //  ROTA TESTE API
 
@@ -41,6 +42,7 @@ app.get('/carrinho', (req, res) => {
 app.use('/usersAPI', usuarioRoute);
 // app.use('/s3teste', s3route);
 app.use('/apiProdutos', consultaProdutos);
+app.use('/apiDetalheProduto', consultaDetalheProduto);
 
 //LOG
 app.listen(port, () => (

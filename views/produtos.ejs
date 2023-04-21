@@ -137,6 +137,9 @@
             </div>
         </div>
         <div class="container-fluid produtos">
+            <div class="row loader" id="loader">
+                <div class="c-loader"></div>
+            </div>
             <div class="row" id="prods">
                 <!-- <div class="col-6 col-md-3 quadproduto">
                     <a href="/produto?id=0001"><img src="/images/produto1.png" alt="produto1">
@@ -247,21 +250,37 @@
     }
     carregarProdutos()
     async function carregarProdutos() {
-        const resposta = await fetch('./apiProdutos');
+        const urlParams = new URLSearchParams(window.location.search);
+        const CatParam = urlParams.get('categoria');
+        const resposta = await fetch('./apiProdutos?categoria=' + CatParam);
         const body = await resposta.json();
         const tam = body.length;
         let html = '';
         for (let i = 0; i <= tam - 1; i++) {
-            html += '<div class="col-6 col-md-3 quadproduto">';
-            html += '<a href="/produto?id=0001"><img src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[i].ID + '/produto1.png" alt="produto1">';
-            html += '<h2 class="nomeproduto">' + body[i].nome_produto + '</h2>';
-            html += '<p class="precoproduto">R$ 99,99</p>';
-            html += '<p class="descontoproduto">17% off</p>';
-            html += '</a>';
-            html += '</div>';
+            if (body[i].tamanho_produto.quantidade_p == 0 && body[i].tamanho_produto.quantidade_m == 0) {
+                html += '';
+            } else {
+                html += '<div class="col-6 col-md-3 quadproduto">';
+                html += '<a href="/produto?id=' + body[i].ID + '"><img src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[i].ID + '/produto1.png" alt="produto1">';
+                html += '<p class=codProduto>CÓD. ' + body[i].ID + '</p>'
+                html += '<h2 class="nomeproduto">' + body[i].nome_produto + '</h2>';
+                html += '<p class="precoproduto">R$ ' + body[i].preco_produto + '</p>';
+                if (body[i].desconto_produto != 0) {
+                    html += '<p class="descontoproduto">' + body[i].desconto_produto + '% off</p>';
+                }
+                if (body[i].parcelamento_produto != "") {
+                    html += '<p class="parcelaproduto">ou ' + body[i].parcelamento_produto + '</p>';
+                }
+                html += '</a>';
+                html += '</div>';
+            }
         }
-
         document.getElementById('prods').innerHTML = html;
+        var loader = document.getElementById("loader");
+        loader.style.display = "none";
+        var loader = document.getElementById("prods");
+        loader.style.display = "flex";
+
     }
 </script>
 

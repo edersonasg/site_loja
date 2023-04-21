@@ -287,6 +287,33 @@
     cursor: pointer;
 }
 
+#prods {
+    display: none;
+}
+
+.loader {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    transform: scale(3);
+}
+
+.c-loader {
+    animation: is-rotating 1s infinite;
+    border: 6px solid #e5e5e5;
+    border-radius: 50%;
+    border-top-color: #27a71f;
+    height: 50px;
+    width: 50px;
+}
+
+@keyframes is-rotating {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
 .produtos {
     padding-bottom: 5em;
 }
@@ -310,6 +337,13 @@
 .quadproduto img {
     width: 300px;
     height: 300px;
+}
+
+.codProduto {
+    font-size: 0.7em;
+    line-height: -0.87em;
+    margin-bottom: -0.13em;
+    color: #706d6d;
 }
 
 .nomeproduto {

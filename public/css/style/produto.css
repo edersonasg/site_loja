@@ -72,10 +72,17 @@ body {
 
 .descricao h3 {
     font-family: 'Arimo', sans-serif;
-    color: rgb(17, 17, 17);
+    color: #B51125;
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.5;
+}
+
+#desconto {
+    color: #7DE64B;
+    font-size: 1em;
+    margin-bottom: 0.3em;
+    font-weight: 400;
 }
 
 .tamprod {
@@ -168,6 +175,6 @@ body {
 
 @media screen and (max-width:730px) {
     .produto img {
-        margin-left: -1.5em;
+        margin-left: -2.5em;
     }
 }
