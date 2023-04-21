@@ -1,10 +1,9 @@
-require('dotenv').config()
-
+require('dotenv').config();
 module.exports = {
     AwsConfig: {
-        "region": "us-east-2",
-        "endpoint": "http://dynamodb.us-east-2.amazonaws.com",
-        "accessKeyId": "AKIA2GEQSB3KC6S7IC2T",
-        "secretAccessKey": "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",
+        "region": process.env.AWS_REGION,
+        "endpoint": process.env.AWS_ENDPOINT,
+        "accessKeyId": process.env.AWS_ACCESS_KEY_ID,
+        "secretAccessKey": process.env.AWS_SECRETACESSKEY,
     }
 }
