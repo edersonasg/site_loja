@@ -33,6 +33,9 @@
     <%- include('nav.ejs') %>
         <section>
             <div class="container produto">
+                <div class="row loader" id="loader">
+                    <div class="c-loader"></div>
+                </div>
                 <div class="row">
                     <nav aria-label="Links visitados">
                         <ol class="Breadcrumb-styled__List-sc-bfc9ea9f-0 ickcoV">
@@ -42,7 +45,7 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="row">
+                <div class="row linhaProduto" id="prods">
                     <div class="col-md-8">
                         <ul class="produto" id="fotoProduto">
                             <!--<li>
@@ -124,12 +127,13 @@
         const CatParam = urlParams.get('id');
         const resposta = await fetch('./apiDetalheProduto?id=' + CatParam);
         const body = await resposta.json();
-
         let foto = ''
-        foto += '<li>'
-        foto += '<a href="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[0].ID + '/produto1.png"></a>'
-        foto += '<img src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[0].ID + '/produto1.png" alt="" width="400px" height="450px">'
-        foto += '</li>'
+        for (i = 1; i <= body[0].fotos_produto; i++) {
+            foto += '<li>'
+            foto += '<a href="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[0].ID + '/produto' + [i] + '.png"></a>'
+            foto += '<img src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[0].ID + '/produto' + [i] + '.png" alt="" width="400px" height="450px">'
+            foto += '</li>'
+        }
         document.getElementById('fotoProduto').innerHTML = foto;
 
         if (body[0].desconto_produto !== 0) {
@@ -144,6 +148,10 @@
         }
         document.getElementById('subcat').innerHTML = "<a  href=/produtos?categoria=" + body[0].categoria_produto + ">" + body[0].subcategoria_produto + "</a>";
 
+        var loader = document.getElementById("loader");
+        loader.style.display = "none";
+        var loader = document.getElementById("prods");
+        loader.style.display = "flex";
     }
 </script>
 

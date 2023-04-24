@@ -8,6 +8,8 @@ const bodyparser = require('body-parser');
 const usuarioRoute = require('./routes/routerConsulta')
 const consultaProdutos = require('./api/api-consulta-produtos')
 const consultaDetalheProduto = require('./api/api-consulta-detalhe-produto')
+const destaqueProduto = require('./api/api-destaque-produto')
+const ofertaProduto = require('./api/api-ofertas-produtos')
     // const s3route = require('./api/api-consulta-s3')
     //  ROTA TESTE API
 
@@ -43,6 +45,8 @@ app.use('/usersAPI', usuarioRoute);
 // app.use('/s3teste', s3route);
 app.use('/apiProdutos', consultaProdutos);
 app.use('/apiDetalheProduto', consultaDetalheProduto);
+app.use('/apiDestaqueProduto', destaqueProduto);
+app.use('/apiOfertas', ofertaProduto);
 
 //LOG
 app.listen(port, () => (

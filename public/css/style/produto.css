@@ -3,6 +3,52 @@ body {
     /* TRAVA O SCROLL DA PAGINA*/
 }
 
+body::-webkit-scrollbar {
+    width: 10px;
+    /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+    background: #3636363a;
+    /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #c08e0471;
+    /* color of the scroll thumb */
+    border-radius: 10px;
+    /* roundness of the scroll thumb */
+    border: 3px solid #fff;
+    /* creates padding around scroll thumb */
+}
+
+.loader {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    transform: scale(3);
+}
+
+.c-loader {
+    animation: is-rotating 1s infinite;
+    border: 6px solid #e5e5e5;
+    border-radius: 50%;
+    border-top-color: #27a71f;
+    height: 50px;
+    width: 50px;
+}
+
+@keyframes is-rotating {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+.linhaProduto {
+    display: none;
+}
+
 .produto {
     width: 100%;
 }
@@ -25,6 +71,10 @@ body {
 .produto ol {
     list-style: none;
     display: flex;
+}
+
+.produto li {
+    margin-right: 0.70em;
 }
 
 .produto ol li a {
@@ -176,5 +226,6 @@ body {
 @media screen and (max-width:730px) {
     .produto img {
         margin-left: -2.5em;
+        margin-bottom: 1em;
     }
 }

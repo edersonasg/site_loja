@@ -82,33 +82,13 @@
         <div class="container-fluid">
             <div class="row descontos">
                 <div class="col-sm-12 col-md-12 col-12">
-                    <p>Descontos imperdíveis</p>
+                    <p>Destaques</p>
                 </div>
             </div>
             <div class="row fotosDescontos">
                 <div class="col-sm-12 col-md-12">
-                    <ul>
-                        <li>
-                            <a href="/produto"><img src="/images/clippersFrente.png" width="250px" height="250px" alt="modelo1"></a>
-                        </li>
-                        <li>
-                            <img src="images/modelo1.png" width="250px" height="250px" alt="modelo1">
-                        </li>
-                        <li>
-                            <img src="images/modelo2.png" width="250px" height="250px" alt="modelo2">
-                        </li>
-                        <li>
-                            <img src="images/modelo3.png" width="250px" height="250px" alt="modelo3">
-                        </li>
-                        <li>
-                            <img src="images/modelo1.png" width="250px" height="250px" alt="modelo1">
-                        </li>
-                        <li>
-                            <img src="images/modelo2.png" width="250px" height="250px" alt="modelo2">
-                        </li>
-                        <li>
-                            <img src="images/modelo3.png" width="250px" height="250px" alt="modelo3">
-                        </li>
+                    <ul id="destaque">
+
                     </ul>
                 </div>
             </div>
@@ -121,13 +101,8 @@
             </div>
             <div class="row fotosOfertas">
                 <div class="col-sm-12 col-md-12">
-                    <ul>
-                        <li>
-                            <img src="images/modelo4.png" width="250px" height="250px" alt="modelo4">
-                        </li>
-                        <li>
-                            <img src="images/modelo5.png" width="250px" height="250px" alt="modelo5">
-                        </li>
+                    <ul id="ofertas">
+
                     </ul>
                 </div>
             </div>
@@ -137,4 +112,49 @@
 
         <%- include('footer.ejs') %>
 
+            <script>
+                destaque()
+                ofertas()
+                async function destaque() {
+                    const resposta = await fetch('./apiDestaqueProduto');
+                    const body = await resposta.json();
+                    const tam = body.length;
+
+                    let des = '';
+                    for (let i = 0; i <= tam - 1; i++) {
+                        des += '<li>'
+                        des += '<a class="prod" href="/produto?id=' + body[i].ID + '">'
+                        des += '<img src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[i].ID + '/produto1.png" width="250px" height="250px" alt="modelo1">'
+                        des += '<p class="codProduto">CÓD. ' + body[i].ID + '</p>'
+                        des += '<h2 class="nomeDestaque">' + body[i].nome_produto + '</h2>'
+                        des += '<p class="precoDestaque">R$ ' + body[i].preco_produto + '</p>'
+                        if (body[i].desconto_produto != 0) {
+                            des += '<p class="descontoproduto">' + body[i].desconto_produto + '% off</p>';
+                        }
+                        des += '</a>'
+                        des += '</li>'
+                    }
+                    document.getElementById('destaque').innerHTML = des;
+                }
+
+                async function ofertas() {
+                    const resposta = await fetch('./apiOfertas');
+                    const body = await resposta.json();
+                    const tam = body.length;
+
+                    let ofertas = '';
+                    for (let i = 0; i <= tam - 1; i++) {
+                        ofertas += '<li>'
+                        ofertas += '<a class="prod" href="/produto?id=' + body[i].ID + '">'
+                        ofertas += '<img src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[i].ID + '/produto1.png" width="250px" height="250px" alt="modelo1">'
+                        ofertas += '<p class="codProduto">CÓD. ' + body[i].ID + '</p>'
+                        ofertas += '<h2 class="nomeDestaque">' + body[i].nome_produto + '</h2>'
+                        ofertas += '<p class="precoDestaque">R$ ' + body[i].preco_produto + '</p>'
+                        ofertas += '<p class="descontoproduto">ou ' + body[i].desconto_produto + '% off à vista</p>'
+                        ofertas += '</a>'
+                        ofertas += '</li>'
+                    }
+                    document.getElementById('ofertas').innerHTML = ofertas;
+                }
+            </script>
 </body>

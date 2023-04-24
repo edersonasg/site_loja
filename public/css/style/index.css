@@ -63,6 +63,80 @@ body::-webkit-scrollbar-thumb {
     /* creates padding around scroll thumb */
 }
 
+#destaque a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#destaque a:hover img {
+    border: 0.13em solid #27a71f;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+#destaque a:hover h2 {
+    text-decoration: underline 0.20em solid #27a71f;
+    cursor: pointer;
+}
+
+#destaque a:hover p {
+    text-decoration: underline 0.20em solid #27a71f;
+    cursor: pointer;
+}
+
+.codProduto {
+    font-size: 0.7em;
+    line-height: -0.87em;
+    margin-bottom: -0.13em;
+    color: #706d6d;
+}
+
+.nomeDestaque {
+    font-family: 'Arimo', sans-serif;
+    color: black;
+    font-weight: 600;
+    font-size: 1em;
+    width: 80%;
+}
+
+.precoDestaque {
+    height: 7px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    color: #706d6d;
+    font-size: 0.95em;
+}
+
+.descontoproduto {
+    height: 7px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.9em;
+    color: #7DE64B;
+}
+
+#ofertas a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#ofertas a:hover img {
+    border: 0.13em solid #27a71f;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+#ofertas a:hover h2 {
+    text-decoration: underline 0.20em solid #27a71f;
+    cursor: pointer;
+}
+
+#ofertas a:hover p {
+    text-decoration: underline 0.20em solid #27a71f;
+    cursor: pointer;
+}
+
 .ofertas {
     margin-left: 5em;
 }
@@ -99,4 +173,13 @@ body::-webkit-scrollbar-thumb {
     /* roundness of the scroll thumb */
     border: 3px solid #fff;
     /* creates padding around scroll thumb */
+}
+
+@media screen and (max-width:730px) {
+    .fotosOfertas ul {
+        display: flex !important;
+        overflow-x: auto !important;
+        list-style: none;
+        justify-content: flex-start !important;
+    }
 }

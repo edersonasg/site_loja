@@ -1,3 +1,22 @@
+body::-webkit-scrollbar {
+    width: 10px;
+    /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+    background: #3636363a;
+    /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #c08e0471;
+    /* color of the scroll thumb */
+    border-radius: 10px;
+    /* roundness of the scroll thumb */
+    border: 3px solid #fff;
+    /* creates padding around scroll thumb */
+}
+
 .buscaefiltro {
     background-color: #7DE64B;
     padding-top: 1.5em;
