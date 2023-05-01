@@ -41,7 +41,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .buscaefiltro input[type=text]:focus {
-    width: 300%;
+    width: 150%;
     transition: all 1s ease;
     border: 1px solid white;
 }
@@ -53,7 +53,7 @@ body::-webkit-scrollbar-thumb {
 
 .buscar {
     background: #a6a6a6;
-    width: 23%;
+    width: 60%;
     border-radius: 2em;
     margin-left: 5em;
 }
@@ -235,27 +235,27 @@ body::-webkit-scrollbar-thumb {
     width: 15px;
     height: 15px;
     border-radius: 2px;
-    background-color: #a6a6a6;
+    background-color: black;
 }
 
 .mc-radio .checkmark:after {
     width: 15px;
     height: 15px;
     border-radius: 2px;
-    background-color: #a6a6a6;
+    background-color: black;
 }
 
 .ct-radio .checkmark:after {
     width: 15px;
     height: 15px;
     border-radius: 2px;
-    background-color: #a6a6a6;
+    background-color: black;
 }
 
 .precoselecionado,
 .marcaselecionada,
 .categoriaselecionada {
-    color: #A6A6A6;
+    color: black;
 }
 
 .linhabotoesfiltros {
@@ -295,6 +295,16 @@ body::-webkit-scrollbar-thumb {
     height: 2em;
 }
 
+.quadrolimpar button:hover {
+    background: #27a71f;
+    color: white;
+}
+
+.quadroatualizar button:hover {
+    background: #27a71f;
+    color: white;
+}
+
 .quadrofechar {
     display: flex;
     justify-content: center;
@@ -304,6 +314,10 @@ body::-webkit-scrollbar-thumb {
     font-size: 4em;
     color: #27a71f;
     cursor: pointer;
+}
+
+.quadrofechar span:hover {
+    color: white;
 }
 
 #prods {
@@ -394,11 +408,57 @@ body::-webkit-scrollbar-thumb {
     color: #B51125;
 }
 
+.iconelimpartamanho {
+    width: 40%;
+    margin-top: 1em;
+}
+
+.iconelimpartamanho span {
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.iconelimpar {
+    width: 33%;
+    margin-top: -0.5em;
+    margin-bottom: 1.5em;
+}
+
+.iconelimpar span {
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.sugestoes {
+    margin-left: 5em;
+}
+
+.sugestoes ul {
+    list-style: none;
+    background: #706d6d;
+    border-radius: 1em;
+    padding-left: 1.5em;
+}
+
+.sugestoes li {
+    color: white;
+    background: #27a71f;
+    padding-left: 1em;
+    border: 1.5px solid #706d6d;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 730px) {
     .filtros {
         background-color: #7DE64B;
         border-top: 0.13em solid white;
-        top: -75em;
+        top: -80em;
         position: absolute;
         transition: all 1s ease;
     }
@@ -437,5 +497,15 @@ body::-webkit-scrollbar-thumb {
     .quadproduto img {
         width: 150px;
         height: 150px;
+    }
+    .iconelimpartamanho {
+        width: 55%;
+        margin-top: 1.2em;
+        margin-bottom: 1.5em;
+    }
+    .iconelimpar {
+        width: 55%;
+        margin-top: -0.5em;
+        margin-bottom: 1.5em;
     }
 }

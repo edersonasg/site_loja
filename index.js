@@ -10,6 +10,8 @@ const consultaProdutos = require('./api/api-consulta-produtos')
 const consultaDetalheProduto = require('./api/api-consulta-detalhe-produto')
 const destaqueProduto = require('./api/api-destaque-produto')
 const ofertaProduto = require('./api/api-ofertas-produtos')
+const filtroProduto = require('./api/api-filtro-produtos')
+const buscaProduto = require('./api/api=busca-produto')
     // const s3route = require('./api/api-consulta-s3')
     //  ROTA TESTE API
 
@@ -47,7 +49,8 @@ app.use('/apiProdutos', consultaProdutos);
 app.use('/apiDetalheProduto', consultaDetalheProduto);
 app.use('/apiDestaqueProduto', destaqueProduto);
 app.use('/apiOfertas', ofertaProduto);
-
+app.use('/apiFiltro', filtroProduto);
+app.use('/apiBusca', buscaProduto);
 //LOG
 app.listen(port, () => (
     console.log('Servidor iniciado na porta' + port)
