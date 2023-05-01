@@ -42,6 +42,10 @@ app.get('/carrinho', (req, res) => {
     return res.render("carrinho")
 });
 
+app.get('/perfil', (req, res) => {
+    return res.render("perfil")
+});
+
 //ROTA DA API
 app.use('/usersAPI', usuarioRoute);
 // app.use('/s3teste', s3route);

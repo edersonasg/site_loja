@@ -509,7 +509,8 @@
     })
 
     async function buscaproduto(produto) {
-        document.getElementById('busca').value = produto;
+        document.getElementById('busca').placeholder = produto;
+        document.getElementById('busca').value = "";
         const resposta = await fetch('./apiBusca?nome=' + produto);
         const body = await resposta.json();
 

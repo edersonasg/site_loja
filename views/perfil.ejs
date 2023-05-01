@@ -1,0 +1,156 @@
+<html lang="pt-br">
+
+<head>
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181818" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f3f3" />
+
+    <!-- These meta tags are Apple-specific, and set the web application to run in full-screen mode with a black status bar. Learn more at https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="PWA Starter" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!-- This tag is used by the PWA Starter CLI to identify template projects. Don't remove if you are using the CLI. -->
+    <meta name="pwa-starter-template-identity" content="pwa-starter" />
+    <link rel="apple-touch-icon" href="images/logo1.png">
+    <link rel="icon" sizes="196x196" href="images/logo1.png">
+
+    <!--pwa-->
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <title>Pagina Home</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style/perfil.css">
+    <link rel="stylesheet" href="/css/style/nav.css">
+    <link rel="stylesheet" href="/css/style/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@600&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <%- include('nav.ejs') %>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <h1 class="nome">Luís Rafael da Silva Gonçalves</h1>
+                </div>
+            </div>
+            <div class="row tabelaperfil">
+                <div class="col-12 col-md-12">
+                    <ul class="listaperfil">
+                        <li>
+                            <p id="dados" class="dados ativo" onclick="dados(id);">DADOS</p>
+                        </li>
+                        <li>
+                            <p id="endereco" class="endereco" onclick="endereco(id);">ENDEREÇO</p>
+                        </li>
+                        <li>
+                            <p id="pedidos" class="pedidos" onclick="pedidos(id);">MEUS PEDIDOS</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div id="dadosPerfil" class="dadosPerfil">
+                        <p>ID: 1234567</p>
+                        <p>NOME: Luís Rafael da Silva Gonçalves</p>
+                        <p>CPF: 000.000.000-00</p>
+                    </div>
+                    <div id="enderecoPerfil" class="enderecoPerfil">
+                        <p>CEP: 1234567</p>
+                        <p>ENDEREÇO: Rua Wolfigango Brandão</p>
+                        <p>NUMERO: 250</p>
+                        <p>BAIRRO: Residencial Paraiso</p>
+                        <p>CIDADE: Paraisopolis</p>
+                        <p>UF: MG</p>
+                    </div>
+                    <div id="pedidosPerfil" class="pedidosPerfil">
+                        <div class="pedido">
+                            <p>#20230429170513 </p>
+                            <p>29/04/2023</p>
+                            <p>R$230,00</p>
+                        </div>
+                        <div class="pedido">
+                            <p>#20230429170513 </p>
+                            <p class="dataPedido">29/04/2023</p>
+                            <p class="valorPedido">R$230,00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('footer.ejs') %>
+
+            <script>
+                function dados(id) {
+                    // OCULTA E MOSTRA A GUIA
+                    var dados = document.getElementById("dadosPerfil");
+                    dados.style.display = "block";
+                    var endereco = document.getElementById("enderecoPerfil");
+                    endereco.style.display = "none";
+                    var pedidos = document.getElementById("pedidosPerfil");
+                    pedidos.style.display = "none";
+
+
+                    // REMOVE A CLASS ATIVO DA GUIA ANTERIOR E ADD NA GUIA NOVA
+                    var set = document.getElementsByClassName("ativo");
+                    if (set.length != 0) {
+                        var idset = set[0].classList.remove("ativo");
+                    }
+                    var idfilho = document.getElementById(id);
+                    valor_tamanho = idfilho;
+                    idfilho.classList.add("ativo");
+
+                }
+
+                function endereco(id) {
+                    // OCULTA E MOSTRA A GUIA
+                    var dados = document.getElementById("dadosPerfil");
+                    dados.style.display = "none";
+                    var endereco = document.getElementById("enderecoPerfil");
+                    endereco.style.display = "block";
+                    var pedidos = document.getElementById("pedidosPerfil");
+                    pedidos.style.display = "none";
+
+
+                    // REMOVE A CLASS ATIVO DA GUIA ANTERIOR E ADD NA GUIA NOVA
+                    var set = document.getElementsByClassName("ativo");
+                    if (set.length != 0) {
+                        var idset = set[0].classList.remove("ativo");
+                    }
+                    var idfilho = document.getElementById(id);
+                    valor_tamanho = idfilho;
+                    idfilho.classList.add("ativo");
+                }
+
+                function pedidos(id) {
+                    // OCULTA E MOSTRA A GUIA
+                    var dados = document.getElementById("dadosPerfil");
+                    dados.style.display = "none";
+                    var endereco = document.getElementById("enderecoPerfil");
+                    endereco.style.display = "none";
+                    var pedidos = document.getElementById("pedidosPerfil");
+                    pedidos.style.display = "block";
+
+
+                    // REMOVE A CLASS ATIVO DA GUIA ANTERIOR E ADD NA GUIA NOVA
+                    var set = document.getElementsByClassName("ativo");
+                    if (set.length != 0) {
+                        var idset = set[0].classList.remove("ativo");
+                    }
+                    var idfilho = document.getElementById(id);
+                    valor_tamanho = idfilho;
+                    idfilho.classList.add("ativo");
+                }
+            </script>
+</body>
+
+</html>

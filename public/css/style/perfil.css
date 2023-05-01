@@ -1,0 +1,113 @@
+.nome {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    padding-top: 1em;
+}
+
+.tabelaperfil {
+    width: 70%;
+    margin: auto;
+    margin-top: 2em;
+}
+
+.tabelaperfil p {
+    width: 100%;
+    font-family: 'Arimo', sans-serif;
+    font-weight: 600;
+    font-size: 1.2em;
+    background-color: #737373;
+    padding: 0.5em 4em;
+    text-align: center;
+    color: black;
+    user-select: none
+}
+
+.listaperfil {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.listaperfil li {
+    cursor: pointer;
+}
+
+.ativo {
+    background-color: #27a71f !important;
+}
+
+.dados,
+.endereco {
+    border-right: 2px solid #d9d9d9;
+}
+
+.enderecoPerfil {
+    display: none;
+}
+
+.pedidosPerfil {
+    display: none;
+}
+
+.dadosPerfil,
+.enderecoPerfil,
+.pedidosPerfil {
+    width: 61%;
+    margin: auto;
+    background-color: #d9d9d9;
+    margin-left: 14.9em;
+    margin-top: -2em;
+    padding-top: 2em;
+    padding-bottom: 7em;
+    margin-bottom: 7em
+}
+
+.dadosPerfil p,
+.enderecoPerfil p,
+.pedidosPerfil p {
+    margin-left: 2em;
+    font-family: 'Arimo', sans-serif;
+    font-weight: 600;
+    font-size: 1.2em;
+    color: black;
+}
+
+.pedido {
+    border-bottom: 2px solid #737373;
+    margin-bottom: 1em;
+}
+
+.dataPedido {
+    color: #737373 !important;
+    font-weight: 600 !important;
+}
+
+.valorPedido {
+    color: #737373 !important;
+    font-weight: 100 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+@media screen and (max-width: 730px) {
+    .listaperfil {
+        list-style: none;
+        display: block;
+    }
+    .tabelaperfil {
+        width: 100%;
+        margin: auto;
+        margin-top: 2em;
+    }
+    .dadosPerfil,
+    .enderecoPerfil,
+    .pedidosPerfil {
+        width: 100%;
+        margin: auto;
+        background-color: #d9d9d9;
+        /* margin-left: 14.9em; */
+        /* margin-top: -2em; */
+        padding-top: 2em;
+        padding-bottom: 7em;
+        margin-bottom: 7em;
+    }
+}
