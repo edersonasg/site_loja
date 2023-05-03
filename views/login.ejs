@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google login</title>
+
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+
+
+</head>
+
+<body>
+    <script>
+        function handleCredentialResponse(response) {
+            const data = jwt_decode(response.credential)
+
+            console.log(data);
+
+            console.log("Encoded JWT ID token: " + response.credential);
+        }
+
+        window.onload = function() {
+            google.accounts.id.initialize({
+                client_id: "934034386239-ta9j7876q2qpnghkcjp4ojfrlsq44vvf.apps.googleusercontent.com",
+                expires_in: 10,
+                callback: handleCredentialResponse
+            });
+
+            google.accounts.id.renderButton(
+                document.getElementById("buttonDiv"), {
+                    theme: "filled_black",
+                    size: "large",
+                    type: "standard",
+                    shape: "pill",
+                    locale: "pt-BR",
+                    logo_alignment: "left",
+                } // customization attributes
+            );
+
+            google.accounts.id.prompt(); // also display the One Tap dialog
+
+        }
+
+        function sair() {
+            CookieManager.getInstance().removeAllCookie(); // this is clear the cookies which tends to same user in android web view
+        }
+    </script>
+    <div id="buttonDiv"></div>
+    <button onclick="sair();">Sair</button>
+</body>
+
+</html>

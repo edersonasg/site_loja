@@ -136,3 +136,12 @@
         margin-left: 0em;
     }
 }
+
+#imagemperfil img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    right: 5em;
+    position: absolute;
+    top: 0.5em;
+}

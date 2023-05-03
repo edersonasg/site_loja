@@ -58,7 +58,8 @@
 </nav>
 
 !-->
-
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
 <div class="nav">
     <div class="container-fluid menu">
         <div class="row menuDesktop">
@@ -103,8 +104,8 @@
             <div class="col-1 car">
                 <a href="/carrinho"><span class="material-icons">shopping_cart</span></a>
             </div>
-            <div class="col-1 car">
-                <a href="/perfil"><span class="material-icons">person</span></a>
+            <div class="col-1 car" id="imagemperfil">
+                <a onclick="modal();"><span class="material-icons">person</span></a>
             </div>
         </div>
         <div class="row menuSmartphone">
@@ -138,12 +139,57 @@
             <div class="col-2 car">
                 <a href="/carrinho"><span class="material-icons">shopping_cart</span></a>
             </div>
-            <div class="col-2 car">
-                <a href="/perfil"><span class="material-icons">person</span></a>
+            <div class="col-2 car" id="imagemperfil">
+                <a onclick="modal();"><span class="material-icons">person</span></a>
             </div>
         </div>
+        <div class="container">
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                        </div>
+                        <div class="modal-body">
+                            <div id="buttonDiv"></div>
+                        </div>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
     </div>
     <script>
+        function modal() {
+
+            $("#myModal").modal("toggle");
+            google.accounts.id.initialize({
+                client_id: "934034386239-ta9j7876q2qpnghkcjp4ojfrlsq44vvf.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+
+            google.accounts.id.renderButton(
+                document.getElementById("buttonDiv"), {
+                    theme: "filled_black",
+                    size: "large",
+                    type: "standard",
+                    shape: "pill",
+                    locale: "pt-BR",
+                    logo_alignment: "left",
+                } // customization attributes
+            );
+
+            google.accounts.id.prompt(); // also display the One Tap dialog
+        }
+
         function abrirMenu() {
             var menu = document.getElementById("menuMobile");
             menu.style.left = "0";
@@ -152,6 +198,17 @@
         function fecharMenu() {
             var menu = document.getElementById("menuMobile");
             menu.style.left = "-30em";
+        }
+
+        function handleCredentialResponse(response) {
+            const data = jwt_decode(response.credential)
+
+            console.log(data);
+
+            console.log("Encoded JWT ID token: " + response.credential);
+            $("#myModal").modal("hide");
+
+            document.getElementById('imagemperfil').innerHTML = '<img src="' + data.picture + '"" alt="" width="150px" height="150px">'
         }
     </script>
 </div>
