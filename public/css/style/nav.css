@@ -145,3 +145,12 @@
     position: absolute;
     top: 0.5em;
 }
+
+#imagemperfilmobile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    right: 1em;
+    position: absolute;
+    top: 1em;
+}

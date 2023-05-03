@@ -139,7 +139,7 @@
             <div class="col-2 car">
                 <a href="/carrinho"><span class="material-icons">shopping_cart</span></a>
             </div>
-            <div class="col-2 car" id="imagemperfil">
+            <div class="col-2 car" id="imagemperfilmobile">
                 <a onclick="modal();"><span class="material-icons">person</span></a>
             </div>
         </div>
@@ -209,6 +209,7 @@
             $("#myModal").modal("hide");
 
             document.getElementById('imagemperfil').innerHTML = '<img src="' + data.picture + '"" alt="" width="150px" height="150px">'
+            document.getElementById('imagemperfilmobile').innerHTML = '<img src="' + data.picture + '"" alt="" width="150px" height="150px">'
         }
     </script>
 </div>
