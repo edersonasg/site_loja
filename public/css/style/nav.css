@@ -75,6 +75,46 @@
 
 .car span:hover {
     cursor: pointer;
+    color: black;
+}
+
+#imagemperfil img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    right: 5em;
+    position: absolute;
+    top: 0.5em;
+}
+
+#imagemperfilmobile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    right: 1em;
+    position: absolute;
+    top: 1em;
+}
+
+.abaperfil {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    background: #27a71f;
+    right: 30px;
+    top: 4.5em;
+    padding: 1em 1em;
+    z-index: 6;
+    border-radius: 0 0 1em 1em;
+}
+
+.abaperfil a {
+    text-decoration: none;
+    color: white;
+}
+
+.abaperfil a:hover {
+    color: black;
 }
 
 @media screen and (max-width: 730px) {
@@ -135,22 +175,4 @@
         margin-top: 0.2em;
         margin-left: 0em;
     }
-}
-
-#imagemperfil img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    right: 5em;
-    position: absolute;
-    top: 0.5em;
-}
-
-#imagemperfilmobile img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    right: 1em;
-    position: absolute;
-    top: 1em;
 }

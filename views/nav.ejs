@@ -58,8 +58,11 @@
 </nav>
 
 !-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+
 <div class="nav">
     <div class="container-fluid menu">
         <div class="row menuDesktop">
@@ -106,6 +109,10 @@
             </div>
             <div class="col-1 car" id="imagemperfil">
                 <a onclick="modal();"><span class="material-icons">person</span></a>
+                <div class="abaperfil" id="abaperfil">
+                    <a href="">Meu Perfil</a>
+                    <a href="">Sair</a>
+                </div>
             </div>
         </div>
         <div class="row menuSmartphone">
@@ -190,6 +197,30 @@
             google.accounts.id.prompt(); // also display the One Tap dialog
         }
 
+        function handleCredentialResponse(response) {
+
+            // O DATA EXTRAI O JWT E RETORNA OS DADOS DO USUARIO
+            const data = jwt_decode(response.credential)
+                // CRIA O COOKIE PARA MANTER O JWT
+            Cookies.set('jwt', response.credential, {
+                path: '/'
+            }, {
+                expires: 1
+            });
+            // ABRE MODAL PARA LOGIN
+            $("#myModal").modal("hide");
+
+            let perfil = '';
+            perfil += '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfil();>'
+            perfil += '<div class="abaperfil" id="abaperfil">'
+            perfil += '<a href="">Meu Perfil</a>'
+            perfil += '<a href="" onclick=fecharlogin();>Sair</a>'
+            perfil += '</div>'
+
+            document.getElementById('imagemperfil').innerHTML = perfil
+            document.getElementById('imagemperfilmobile').innerHTML = '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfil();>'
+        }
+
         function abrirMenu() {
             var menu = document.getElementById("menuMobile");
             menu.style.left = "0";
@@ -199,17 +230,42 @@
             var menu = document.getElementById("menuMobile");
             menu.style.left = "-30em";
         }
+        verificarlogin();
 
-        function handleCredentialResponse(response) {
-            const data = jwt_decode(response.credential)
+        /// FUNCAO VERIFICA SE O COOKIE JWT ESTA COM OS DADOS E  MANTEM O LOGIN
+        function verificarlogin() {
+            const perfil = document.cookie
+                .split('; ')
+                .find(row => row.startsWith('jwt='))
 
-            console.log(data);
+            if (perfil != undefined) {
+                const perfil = document.cookie
+                    .split('; ')
+                    .find(row => row.startsWith('jwt='))
+                    .split('=')[1];
 
-            console.log("Encoded JWT ID token: " + response.credential);
-            $("#myModal").modal("hide");
+                const data = jwt_decode(perfil);
 
-            document.getElementById('imagemperfil').innerHTML = '<img src="' + data.picture + '"" alt="" width="150px" height="150px">'
-            document.getElementById('imagemperfilmobile').innerHTML = '<img src="' + data.picture + '"" alt="" width="150px" height="150px">'
+                let perfilaba = '';
+                perfilaba += '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfil();>'
+                perfilaba += '<div class="abaperfil" id="abaperfil">'
+                perfilaba += '<a href="">Meu Perfil</a>'
+                perfilaba += '<a href="" onclick=fecharlogin();>Sair</a>'
+                perfilaba += '</div>'
+
+                document.getElementById('imagemperfil').innerHTML = perfilaba
+                document.getElementById('imagemperfilmobile').innerHTML = '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfil();>'
+            }
+        }
+
+        function meuperfil() {
+            var abaperfil = document.getElementById("abaperfil");
+            abaperfil.style.display = "flex";
+        }
+
+        function fecharlogin() {
+            Cookies.remove('jwt')
+            document.location.reload(true);
         }
     </script>
 </div>
