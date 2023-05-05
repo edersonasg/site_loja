@@ -107,11 +107,11 @@
             <div class="col-1 car">
                 <a href="/carrinho"><span class="material-icons">shopping_cart</span></a>
             </div>
-            <div class="col-1 car" id="imagemperfil">
+            <div class="col-1 perfil" id="imagemperfil">
                 <a onclick="modal();"><span class="material-icons">person</span></a>
-                <div class="abaperfil" id="abaperfil">
-                    <a href="">Meu Perfil</a>
-                    <a href="">Sair</a>
+                <div class="botaologin" id="botaologin">
+                    <span class="material-icons fecharabaperfillogin" onclick="fecharabaperfillogin();"> close</span>
+                    <div id="buttonDiv"></div>
                 </div>
             </div>
         </div>
@@ -147,37 +147,21 @@
                 <a href="/carrinho"><span class="material-icons">shopping_cart</span></a>
             </div>
             <div class="col-2 car" id="imagemperfilmobile">
-                <a onclick="modal();"><span class="material-icons">person</span></a>
-            </div>
-        </div>
-        <div class="container">
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-
-                        </div>
-                        <div class="modal-body">
-                            <div id="buttonDiv"></div>
-                        </div>
-                        <div class="modal-footer">
-
-                        </div>
-                    </div>
-
+                <a><span class="material-icons" onclick="loginmobile();">person</span></a>
+                <div class="botaologinmobile" id="botaologinmobile">
+                    <span class="material-icons fecharabaperfilmobile" onclick="fecharabaperfilmobile();"> close</span>
+                    <div id="buttonPerfil"></div>
                 </div>
             </div>
-
         </div>
+
 
     </div>
     <script>
         function modal() {
+            const loginbutton = document.getElementById("botaologin");
+            loginbutton.style.opacity = 1;
 
-            $("#myModal").modal("toggle");
             google.accounts.id.initialize({
                 client_id: "934034386239-ta9j7876q2qpnghkcjp4ojfrlsq44vvf.apps.googleusercontent.com",
                 callback: handleCredentialResponse
@@ -188,13 +172,34 @@
                     theme: "filled_black",
                     size: "large",
                     type: "standard",
-                    shape: "pill",
+                    shape: "circle",
                     locale: "pt-BR",
                     logo_alignment: "left",
                 } // customization attributes
             );
 
-            google.accounts.id.prompt(); // also display the One Tap dialog
+            // google.accounts.id.prompt(); // also display the One Tap dialog
+        }
+
+        function loginmobile() {
+            const loginbutton = document.getElementById("botaologinmobile");
+            loginbutton.style.opacity = 1;
+            google.accounts.id.initialize({
+                client_id: "934034386239-ta9j7876q2qpnghkcjp4ojfrlsq44vvf.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+
+            google.accounts.id.renderButton(
+                document.getElementById("buttonPerfil"), {
+                    theme: "filled_black",
+                    size: "large",
+                    type: "standard",
+                    shape: "circle",
+                    locale: "pt-BR",
+                    logo_alignment: "left",
+                } // customization attributes
+            );
+
         }
 
         function handleCredentialResponse(response) {
@@ -203,9 +208,7 @@
             const data = jwt_decode(response.credential)
                 // CRIA O COOKIE PARA MANTER O JWT
             Cookies.set('jwt', response.credential, {
-                path: '/'
-            }, {
-                expires: 1
+                expires: 0.1
             });
             // ABRE MODAL PARA LOGIN
             $("#myModal").modal("hide");
@@ -213,8 +216,9 @@
             let perfil = '';
             perfil += '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfil();>'
             perfil += '<div class="abaperfil" id="abaperfil">'
-            perfil += '<a href="">Meu Perfil</a>'
+            perfil += '<a href="/perfil">Meu Perfil</a>'
             perfil += '<a href="" onclick=fecharlogin();>Sair</a>'
+            perfil += '<span class="material-icons fecharperfil" onclick=fecharabaperfil();>close</span>'
             perfil += '</div>'
 
             document.getElementById('imagemperfil').innerHTML = perfil
@@ -230,6 +234,7 @@
             var menu = document.getElementById("menuMobile");
             menu.style.left = "-30em";
         }
+
         verificarlogin();
 
         /// FUNCAO VERIFICA SE O COOKIE JWT ESTA COM OS DADOS E  MANTEM O LOGIN
@@ -249,8 +254,9 @@
                 let perfilaba = '';
                 perfilaba += '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfil();>'
                 perfilaba += '<div class="abaperfil" id="abaperfil">'
-                perfilaba += '<a href="">Meu Perfil</a>'
+                perfilaba += '<a href="/perfil">Meu Perfil</a>'
                 perfilaba += '<a href="" onclick=fecharlogin();>Sair</a>'
+                perfilaba += '<span class="material-icons fecharperfil" onclick=fecharabaperfil();>close</span>'
                 perfilaba += '</div>'
 
                 document.getElementById('imagemperfil').innerHTML = perfilaba
@@ -260,12 +266,28 @@
 
         function meuperfil() {
             var abaperfil = document.getElementById("abaperfil");
-            abaperfil.style.display = "flex";
+            abaperfil.style.opacity = 1;
         }
 
         function fecharlogin() {
+            google.accounts.id.disableAutoSelect();
             Cookies.remove('jwt')
             document.location.reload(true);
+        }
+
+        function fecharabaperfil() {
+            var abaperfil = document.getElementById("abaperfil");
+            abaperfil.style.opacity = 0;
+        }
+
+        function fecharabaperfilmobile() {
+            const loginbutton = document.getElementById("botaologinmobile");
+            loginbutton.style.opacity = 0;
+        }
+
+        function fecharabaperfillogin() {
+            const loginbutton = document.getElementById("botaologin");
+            loginbutton.style.opacity = 0;
         }
     </script>
 </div>
