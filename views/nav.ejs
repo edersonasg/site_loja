@@ -221,8 +221,17 @@
             perfil += '<span class="material-icons fecharperfil" onclick=fecharabaperfil();>close</span>'
             perfil += '</div>'
 
+
+            let perfilabamobile = '';
+            perfilabamobile += '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfilmobile();>'
+            perfilabamobile += '<div class="abaperfil" id="abaperfilmobile">'
+            perfilabamobile += '<a href="/perfil">Meu Perfil</a>'
+            perfilabamobile += '<a href="" onclick=fecharlogin();>Sair</a>'
+            perfilabamobile += '<span class="material-icons fecharperfil" onclick=fecharabaperfilmobile();>close</span>'
+            perfilabamobile += '</div>'
+
             document.getElementById('imagemperfil').innerHTML = perfil
-            document.getElementById('imagemperfilmobile').innerHTML = perfil
+            document.getElementById('imagemperfilmobile').innerHTML = perfilabamobile
         }
 
         function abrirMenu() {
