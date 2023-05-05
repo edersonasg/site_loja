@@ -149,7 +149,7 @@
             <div class="col-2 car" id="imagemperfilmobile">
                 <a><span class="material-icons" onclick="loginmobile();">person</span></a>
                 <div class="botaologinmobile" id="botaologinmobile">
-                    <span class="material-icons fecharabaperfilmobile" onclick="fecharabaperfilmobile();"> close</span>
+                    <span class="material-icons fecharabaperfilmobile" onclick="fecharbotaoperfilmobile();"> close</span>
                     <div id="buttonPerfil"></div>
                 </div>
             </div>
@@ -222,7 +222,7 @@
             perfil += '</div>'
 
             document.getElementById('imagemperfil').innerHTML = perfil
-            document.getElementById('imagemperfilmobile').innerHTML = '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfil();>'
+            document.getElementById('imagemperfilmobile').innerHTML = perfil
         }
 
         function abrirMenu() {
@@ -259,13 +259,27 @@
                 perfilaba += '<span class="material-icons fecharperfil" onclick=fecharabaperfil();>close</span>'
                 perfilaba += '</div>'
 
+
+                let perfilabamobile = '';
+                perfilabamobile += '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfilmobile();>'
+                perfilabamobile += '<div class="abaperfil" id="abaperfilmobile">'
+                perfilabamobile += '<a href="/perfil">Meu Perfil</a>'
+                perfilabamobile += '<a href="" onclick=fecharlogin();>Sair</a>'
+                perfilabamobile += '<span class="material-icons fecharperfil" onclick=fecharabaperfilmobile();>close</span>'
+                perfilabamobile += '</div>'
+
                 document.getElementById('imagemperfil').innerHTML = perfilaba
-                document.getElementById('imagemperfilmobile').innerHTML = '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfil();>'
+                document.getElementById('imagemperfilmobile').innerHTML = perfilabamobile
             }
         }
 
         function meuperfil() {
             var abaperfil = document.getElementById("abaperfil");
+            abaperfil.style.opacity = 1;
+        }
+
+        function meuperfilmobile() {
+            var abaperfil = document.getElementById("abaperfilmobile");
             abaperfil.style.opacity = 1;
         }
 
@@ -281,6 +295,11 @@
         }
 
         function fecharabaperfilmobile() {
+            var abaperfil = document.getElementById("abaperfilmobile");
+            abaperfil.style.opacity = 0;
+        }
+
+        function fecharbotaoperfilmobile() {
             const loginbutton = document.getElementById("botaologinmobile");
             loginbutton.style.opacity = 0;
         }

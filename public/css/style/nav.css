@@ -67,6 +67,8 @@
 
 .car {
     margin-left: 7em;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .car span {
@@ -252,5 +254,18 @@
         /* right: -0.3em; */
         left: -1.2em !important;
         top: 0.2em !important;
+    }
+    .abaperfil {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        background: #27a71f;
+        right: 0;
+        top: 4.5em;
+        padding: 1em 1em;
+        z-index: 6;
+        border-radius: 0 0 1em 1em;
+        opacity: 0;
+        transition: 1s all ease;
     }
 }
