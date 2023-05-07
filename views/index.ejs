@@ -121,12 +121,18 @@
 
                     let des = '';
                     for (let i = 0; i <= tam - 1; i++) {
+                        var float = parseFloat(body[i].preco_produto.toFixed(2));
+                        // console.log(float);
+                        var preco = float.toLocaleString('pt-br', {
+                            minimumFractionDigits: 2
+                        }); // FORMATA O PREÇO DE INT PARA MOEDA BR
+
                         des += '<li>'
                         des += '<a class="prod" href="/produto?id=' + body[i].ID + '">'
                         des += '<img src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[i].ID + '/produto1.png" width="250px" height="250px" alt="modelo1">'
                         des += '<p class="codProduto">CÓD. ' + body[i].ID + '</p>'
                         des += '<h2 class="nomeDestaque">' + body[i].nome_produto + '</h2>'
-                        des += '<p class="precoDestaque">R$ ' + body[i].preco_produto + '</p>'
+                        des += '<p class="precoDestaque">R$ ' + preco + '</p>'
                         if (body[i].desconto_produto != 0) {
                             des += '<p class="descontoproduto">' + body[i].desconto_produto + '% off</p>';
                         }
@@ -143,12 +149,18 @@
 
                     let ofertas = '';
                     for (let i = 0; i <= tam - 1; i++) {
+                        var float = parseFloat(body[i].preco_produto.toFixed(2));
+                        // console.log(float);
+                        var preco = float.toLocaleString('pt-br', {
+                            minimumFractionDigits: 2
+                        }); // FORMATA O PREÇO DE INT PARA MOEDA BR
+
                         ofertas += '<li>'
                         ofertas += '<a class="prod" href="/produto?id=' + body[i].ID + '">'
                         ofertas += '<img src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[i].ID + '/produto1.png" width="250px" height="250px" alt="modelo1">'
                         ofertas += '<p class="codProduto">CÓD. ' + body[i].ID + '</p>'
                         ofertas += '<h2 class="nomeDestaque">' + body[i].nome_produto + '</h2>'
-                        ofertas += '<p class="precoDestaque">R$ ' + body[i].preco_produto + '</p>'
+                        ofertas += '<p class="precoDestaque">R$ ' + preco + '</p>'
                         ofertas += '<p class="descontoproduto">ou ' + body[i].desconto_produto + '% off à vista</p>'
                         ofertas += '</a>'
                         ofertas += '</li>'
