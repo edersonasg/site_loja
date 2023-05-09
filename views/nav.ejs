@@ -158,18 +158,18 @@
     <div class="container-fluid" id="containerFormulario">
         <form class="form">
             <h2>PREENCHA SUAS INFORMAÇÕES</h2>
-            <p type="CPF:"><input id="cpf" type="text" placeholder="Digite seu CPF:" required></input>
+            <p type="CPF:"><input id="cpf" type="text" placeholder="Digite seu CPF:" required onchange="validarCPF(value);"></input>
             </p>
             <p type="DATA DE NASCIMENTO:"><input id="data" placeholder="Digite sua data de nascimento: dd/mm/aaaa" required></input>
             </p>
             <p type="TELEFONE:"><input id="telefone" type="tel" placeholder="Digite seu número:" required></input>
             </p>
             <h3>DADOS DE ENDEREÇO</h3>
+            <p type="CEP:"><input id="cep" type="text" placeholder="Digite seu CEP:" required onkeypress="buscarcep(value);" onChange="buscarcep(value);"></input>
+            </p>
             <p type="Rua:"><input id="rua" placeholder="Digite o nome de sua rua:" required></input>
             </p>
             <p type="Número:"><input id="numero" placeholder="Digite o número de sua residência:" required></input>
-            </p>
-            <p type="CEP:"><input id="cep" type="text" placeholder="Digite seu CEP:" required onkeypress="buscarcep(value);" onChange="buscarcep(value);"></input>
             </p>
             <p type="Cidade:"><input id="cidade" placeholder="Cidade:" required disabled=""></input>
             </p>
@@ -333,7 +333,7 @@
     });
 
     async function validarCadastro() {
-        const cpf = document.getElementById("cpf");
+        const cpfBruto = document.getElementById("cpf");
         const data = document.getElementById("data");
         const telefone = document.getElementById("telefone");
         const rua = document.getElementById("rua");
@@ -342,12 +342,12 @@
         const cidade = document.getElementById("cidade");
         const uf = document.getElementById("uf");
 
-        if (cpf.value == "") {
-            cpf.style.setProperty("--color", "red");
-            cpf.style.borderBottom = "2px solid red";
+        if (cpfBruto.value == "") {
+            cpfBruto.style.setProperty("--color", "red");
+            cpfBruto.style.borderBottom = "2px solid red";
         } else {
-            cpf.style.setProperty("--color", "white");
-            cpf.style.borderBottom = "2px solid white";
+            cpfBruto.style.setProperty("--color", "white");
+            cpfBruto.style.borderBottom = "2px solid white";
         }
         if (data.value == "") {
             data.style.setProperty("--color", "red");
@@ -399,6 +399,53 @@
             uf.style.borderBottom = "2px solid white";
         }
 
+        const cpf = cpfBruto.value.match(/\d/g).join("");
+        if (!cpf || cpf.length != 11 ||
+            cpf == "00000000000" ||
+            cpf == "11111111111" ||
+            cpf == "22222222222" ||
+            cpf == "33333333333" ||
+            cpf == "44444444444" ||
+            cpf == "55555555555" ||
+            cpf == "66666666666" ||
+            cpf == "77777777777" ||
+            cpf == "88888888888" ||
+            cpf == "99999999999") {
+            cpfBruto.style.setProperty("--color", "red");
+            cpfBruto.style.borderBottom = "2px solid red";
+            cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+            cpfBruto.value = ""
+            return false
+        }
+        var soma = 0
+        var resto
+        for (var i = 1; i <= 9; i++)
+            soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i)
+        resto = (soma * 10) % 11
+        if ((resto == 10) || (resto == 11)) resto = 0
+        if (resto != parseInt(cpf.substring(9, 10))) {
+            cpfBruto.style.setProperty("--color", "red");
+            cpfBruto.style.borderBottom = "2px solid red";
+            cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+            cpfBruto.value = ""
+            return false
+        } else {
+            soma = 0
+            cpfBruto.style.setProperty("--color", "white");
+            cpfBruto.style.borderBottom = "2px solid white";
+        }
+        for (var i = 1; i <= 10; i++)
+            soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i)
+        resto = (soma * 10) % 11
+        if ((resto == 10) || (resto == 11)) resto = 0
+        if (resto != parseInt(cpf.substring(10, 11))) {
+            cpfBruto.style.setProperty("--color", "red");
+            cpfBruto.style.borderBottom = "2px solid red";
+            cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+            cpfBruto.value = ""
+            return false
+        }
+        criarCliente(cpf, data.value, telefone.value, rua.value, numero.value, cep.value, cidade.value, uf.value);
     }
     async function buscarcep(cep) {
         const ceplimpo = cep.replace(/[^0-9]+/, '');
@@ -410,7 +457,60 @@
         document.getElementById("cidade").value = body.localidade;
         document.getElementById("uf").value = body.uf;
     }
-    async function criarCliente() {
+
+    function validarCPF() {
+        const cpfBruto = document.getElementById("cpf");
+        const cpf = cpfBruto.value.match(/\d/g).join("");
+        if (!cpf || cpf.length != 11 ||
+            cpf == "00000000000" ||
+            cpf == "11111111111" ||
+            cpf == "22222222222" ||
+            cpf == "33333333333" ||
+            cpf == "44444444444" ||
+            cpf == "55555555555" ||
+            cpf == "66666666666" ||
+            cpf == "77777777777" ||
+            cpf == "88888888888" ||
+            cpf == "99999999999") {
+            cpfBruto.style.setProperty("--color", "red");
+            cpfBruto.style.borderBottom = "2px solid red";
+            cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+            cpfBruto.value = ""
+            return false
+        }
+        var soma = 0
+        var resto
+        for (var i = 1; i <= 9; i++)
+            soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i)
+        resto = (soma * 10) % 11
+        if ((resto == 10) || (resto == 11)) resto = 0
+        if (resto != parseInt(cpf.substring(9, 10))) {
+            cpfBruto.style.setProperty("--color", "red");
+            cpfBruto.style.borderBottom = "2px solid red";
+            cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+            cpfBruto.value = ""
+            return false
+        } else {
+            soma = 0
+            cpfBruto.style.setProperty("--color", "white");
+            cpfBruto.style.borderBottom = "2px solid white";
+        }
+        for (var i = 1; i <= 10; i++)
+            soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i)
+        resto = (soma * 10) % 11
+        if ((resto == 10) || (resto == 11)) resto = 0
+        if (resto != parseInt(cpf.substring(10, 11))) {
+            cpfBruto.style.setProperty("--color", "red");
+            cpfBruto.style.borderBottom = "2px solid red";
+            cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+            cpfBruto.value = ""
+            return false
+        }
+        return true
+    }
+
+
+    async function criarCliente(cpf, datanascimento, telefone, rua, numero, cep, cidade, uf) {
         const perfil = document.cookie
             .split('; ')
             .find(row => row.startsWith('jwt='))
@@ -420,9 +520,22 @@
 
             const data = {
                 ID: dados.sub,
-                email: dados.email,
-                nome: dados.name,
-                idade: "23",
+                email_cliente: dados.email,
+                nome_cliente: dados.name,
+                data_nascimento: datanascimento,
+                cpf_cliente: cpf,
+                telefone_cliente: telefone,
+                rua: rua,
+                numero: numero,
+                cep: cep,
+                cidade: cidade,
+                uf: uf,
+                pedidos: {
+                    item: {
+                        idproduto: "545454",
+                        quantidade: "2",
+                    }
+                }
             };
 
             fetch('./apiCriarCliente', {

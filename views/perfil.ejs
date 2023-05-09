@@ -38,8 +38,8 @@
     <%- include('nav.ejs') %>
         <div class="container">
             <div class="row cabecalho">
-                <div class="col-1 col-md-1">
-                    <img src="https://lh3.googleusercontent.com/a/AGNmyxaGD2jIsPkQ3wfDhPRZIVUbvkghpT6VE6heGMh8hA=s96-c" alt="">
+                <div class="col-1 col-md-1" id="fotoCliente">
+
                 </div>
                 <div class="col-10 col-md-10">
                     <h1 class="nome" id="nomeCliente"></h1>
@@ -66,12 +66,7 @@
                         <!--SERA CARREGADO VIA DOM-->
                     </div>
                     <div id="enderecoPerfil" class="enderecoPerfil">
-                        <p>CEP: 1234567</p>
-                        <p>ENDEREÇO: Rua Wolfigango Brandão</p>
-                        <p>NUMERO: 250</p>
-                        <p>BAIRRO: Residencial Paraiso</p>
-                        <p>CIDADE: Paraisopolis</p>
-                        <p>UF: MG</p>
+
                     </div>
                     <div id="pedidosPerfil" class="pedidosPerfil">
                         <div class="pedido">
@@ -161,17 +156,33 @@
                     const resposta = await fetch('./apiBuscaCliente?id=' + dados.sub);
                     const body = await resposta.json();
                     console.log(body);
-                    const cpf = body[0].cpf;
+                    const cpf = body[0].cpf_cliente;
                     const cpfCli = cpf.toString().replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "$1.$2.$3-$4")
 
-                    document.getElementById("nomeCliente").innerHTML = body[0].nome;
+                    document.getElementById("nomeCliente").innerHTML = body[0].nome_cliente;
+
+                    document.getElementById("fotoCliente").innerHTML = '<img src=' + dados.picture + ' alt="">'
 
                     let dadosPerfil = ''
-                    dadosPerfil += '<p>ID: ' + body[0].ID + '</p>'
-                    dadosPerfil += '<p>NOME: ' + body[0].nome + '</p>'
-                    dadosPerfil += '<p>CPF: ' + cpfCli + '</p>'
+                    dadosPerfil += '<span class="material-icons">fingerprint</span><p>ID: ' + body[0].ID + '</p>'
+                    dadosPerfil += '<span class="material-icons">person</span><p>NOME: ' + body[0].nome_cliente + '</p>'
+                    dadosPerfil += '<span class="material-icons cpficon">clinical_notes</span><p>CPF: ' + cpfCli + '</p>'
+                    dadosPerfil += '<span class="material-icons">child_care</span><p>DATA DE NASCIMENTO: ' + body[0].data_nascimento + '</p>'
+                    dadosPerfil += '<span class="material-icons">smartphone</span><p>TELEFONE: ' + body[0].telefone_cliente + '</p>'
+                    dadosPerfil += '<span class="material-icons">email</span><p>E-MAIL: ' + body[0].email_cliente + '</p>'
 
                     document.getElementById("dadosPerfil").innerHTML = dadosPerfil;
+
+                    let dadosEndereco = ''
+                    dadosEndereco += '<span class="material-icons">streetview</span><p>CEP: ' + body[0].cep + '</p>'
+                    dadosEndereco += '<span class="material-icons">home</span><p>ENDEREÇO: ' + body[0].rua + '</p>'
+                    dadosEndereco += '<span class="material-icons numbericon">123</span><p>NUMERO: ' + body[0].numero + '</p>'
+                    dadosEndereco += '<span class="material-icons">location_city</span><p>BAIRRO: Residencial Paraiso</p>'
+                    dadosEndereco += '<span class="material-icons">warehouse</span><p>CIDADE: ' + body[0].cidade + '</p>'
+                    dadosEndereco += '<span class="material-icons">explore</span><p>UF: ' + body[0].uf + '</p>'
+                    document.getElementById("enderecoPerfil").innerHTML = dadosEndereco;
+
+
                 }
             </script>
 </body>

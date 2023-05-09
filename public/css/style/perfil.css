@@ -63,6 +63,26 @@
     display: none;
 }
 
+.dadosPerfil span,
+.enderecoPerfil span {
+    top: 1em;
+    position: relative;
+    left: 1.5em;
+}
+
+.cpficon {
+    position: relative !important;
+    left: -8em !important;
+    font-size: 2em !important;
+}
+
+.numbericon {
+    top: 0.83em !important;
+    position: relative !important;
+    left: 0.8em !important;
+    font-size: 2.5em !important;
+}
+
 .pedidosPerfil {
     display: none;
 }
@@ -85,11 +105,14 @@
 .dadosPerfil p,
 .enderecoPerfil p,
 .pedidosPerfil p {
-    margin-left: 2em;
     font-family: 'Arimo', sans-serif;
     font-weight: 600;
     font-size: 1.2em;
-    color: black;
+    color: white;
+    margin-left: 4em;
+    width: 80%;
+    border-bottom: dashed;
+    cursor: default;
 }
 
 .pedido {
@@ -123,7 +146,7 @@
     .pedidosPerfil {
         width: 100%;
         margin: auto;
-        background-color: #d9d9d9;
+        background-color: #3fbc5d;
         /* margin-left: 14.9em; */
         /* margin-top: -2em; */
         padding-top: 2em;
@@ -135,5 +158,10 @@
         font-size: 2em;
         padding-top: 1em;
         margin-left: 2.5em;
+    }
+    .dadosPerfil p,
+    .enderecoPerfil p,
+    .pedidosPerfil p {
+        width: 75%;
     }
 }
