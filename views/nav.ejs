@@ -58,7 +58,7 @@
 </nav>
 
 !-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
@@ -154,120 +154,143 @@
                 </div>
             </div>
         </div>
-
-
     </div>
-    <script>
-        function abrirMenu() {
-            var menu = document.getElementById("menuMobile");
-            menu.style.left = "0";
-        }
+    <div class="container-fluid" id="containerFormulario">
+        <form class="form">
+            <h2>PREENCHA SUAS INFORMAÇÕES</h2>
+            <p type="CPF:"><input id="cpf" type="text" placeholder="Digite seu CPF:" required></input>
+            </p>
+            <p type="DATA DE NASCIMENTO:"><input id="data" placeholder="Digite sua data de nascimento: dd/mm/aaaa" required></input>
+            </p>
+            <p type="TELEFONE:"><input id="telefone" type="tel" placeholder="Digite seu número:" required></input>
+            </p>
+            <h3>DADOS DE ENDEREÇO</h3>
+            <p type="Rua:"><input id="rua" placeholder="Digite o nome de sua rua:" required></input>
+            </p>
+            <p type="Número:"><input id="numero" placeholder="Digite o número de sua residência:" required></input>
+            </p>
+            <p type="CEP:"><input id="cep" type="text" placeholder="Digite seu CEP:" required onkeypress="buscarcep(value);" onChange="buscarcep(value);"></input>
+            </p>
+            <p type="Cidade:"><input id="cidade" placeholder="Cidade:" required disabled=""></input>
+            </p>
+            <p type="UF:"><input id="uf" placeholder="UF:" required></input>
+            </p>
+            <button class="cancelar" onclick="fecharlogin();">Cancelar</button>
+            <button class="cadastrar" onclick="validarCadastro();">Cadastrar</button>
+        </form>
+    </div>
+</div>
+<script src="/js/front/nav.js"></script>
+<script src="/js/jquery.mask.js"></script>
+<script>
+    function fecharlogin() {
+        google.accounts.id.disableAutoSelect();
+        Cookies.remove('jwt')
+        document.location.reload(true);
+    }
 
-        function fecharMenu() {
-            var menu = document.getElementById("menuMobile");
-            menu.style.left = "-30em";
-        }
+    function modal() {
+        const loginbutton = document.getElementById("botaologin");
+        loginbutton.style.opacity = 1;
 
-        function meuperfil() {
-            var abaperfil = document.getElementById("abaperfil");
-            abaperfil.style.opacity = 1;
-        }
+        google.accounts.id.initialize({
+            client_id: "934034386239-ta9j7876q2qpnghkcjp4ojfrlsq44vvf.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
 
-        function meuperfilmobile() {
-            var abaperfil = document.getElementById("abaperfilmobile");
-            abaperfil.style.opacity = 1;
-        }
+        google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"), {
+                theme: "filled_black",
+                size: "large",
+                type: "standard",
+                shape: "circle",
+                locale: "pt-BR",
+                logo_alignment: "left",
+            } // customization attributes
+        );
 
-        function fecharlogin() {
-            google.accounts.id.disableAutoSelect();
-            Cookies.remove('jwt')
-            document.location.reload(true);
-        }
+        // google.accounts.id.prompt(); // also display the One Tap dialog
+    }
 
-        function fecharabaperfil() {
-            var abaperfil = document.getElementById("abaperfil");
-            abaperfil.style.opacity = 0;
-        }
+    function loginmobile() {
+        const loginbutton = document.getElementById("botaologinmobile");
+        loginbutton.style.opacity = 1;
+        google.accounts.id.initialize({
+            client_id: "934034386239-ta9j7876q2qpnghkcjp4ojfrlsq44vvf.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
 
-        function fecharabaperfilmobile() {
-            var abaperfil = document.getElementById("abaperfilmobile");
-            abaperfil.style.opacity = 0;
-        }
+        google.accounts.id.renderButton(
+            document.getElementById("buttonPerfil"), {
+                theme: "filled_black",
+                size: "large",
+                type: "standard",
+                shape: "circle",
+                locale: "pt-BR",
+                logo_alignment: "left",
+            } // customization attributes
+        );
 
-        function fecharbotaoperfilmobile() {
-            const loginbutton = document.getElementById("botaologinmobile");
-            loginbutton.style.opacity = 0;
-        }
+    }
 
-        function fecharabaperfillogin() {
-            const loginbutton = document.getElementById("botaologin");
-            loginbutton.style.opacity = 0;
-        }
+    function handleCredentialResponse(response) {
+
+        // O DATA EXTRAI O JWT E RETORNA OS DADOS DO USUARIO
+        const data = jwt_decode(response.credential)
+            // CRIA O COOKIE PARA MANTER O JWT
+        console.log(data);
+        Cookies.set('jwt', response.credential, {
+            expires: 0.1
+        });
 
 
-        function modal() {
-            const loginbutton = document.getElementById("botaologin");
-            loginbutton.style.opacity = 1;
+        let perfil = '';
+        perfil += '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfil();>'
+        perfil += '<div class="abaperfil" id="abaperfil">'
+        perfil += '<a href="/perfil">Meu Perfil</a>'
+        perfil += '<a href="" onclick=fecharlogin();>Sair</a>'
+        perfil += '<span class="material-icons fecharperfil" onclick=fecharabaperfil();>close</span>'
+        perfil += '</div>'
 
-            google.accounts.id.initialize({
-                client_id: "934034386239-ta9j7876q2qpnghkcjp4ojfrlsq44vvf.apps.googleusercontent.com",
-                callback: handleCredentialResponse
-            });
 
-            google.accounts.id.renderButton(
-                document.getElementById("buttonDiv"), {
-                    theme: "filled_black",
-                    size: "large",
-                    type: "standard",
-                    shape: "circle",
-                    locale: "pt-BR",
-                    logo_alignment: "left",
-                } // customization attributes
-            );
+        let perfilabamobile = '';
+        perfilabamobile += '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfilmobile();>'
+        perfilabamobile += '<div class="abaperfil" id="abaperfilmobile">'
+        perfilabamobile += '<a href="/perfil">Meu Perfil</a>'
+        perfilabamobile += '<a href="" onclick=fecharlogin();>Sair</a>'
+        perfilabamobile += '<span class="material-icons fecharperfil" onclick=fecharabaperfilmobile();>close</span>'
+        perfilabamobile += '</div>'
 
-            // google.accounts.id.prompt(); // also display the One Tap dialog
-        }
+        document.getElementById('imagemperfil').innerHTML = perfil
+        document.getElementById('imagemperfilmobile').innerHTML = perfilabamobile
 
-        function loginmobile() {
-            const loginbutton = document.getElementById("botaologinmobile");
-            loginbutton.style.opacity = 1;
-            google.accounts.id.initialize({
-                client_id: "934034386239-ta9j7876q2qpnghkcjp4ojfrlsq44vvf.apps.googleusercontent.com",
-                callback: handleCredentialResponse
-            });
+        verificarCliente(data.sub);
+    }
 
-            google.accounts.id.renderButton(
-                document.getElementById("buttonPerfil"), {
-                    theme: "filled_black",
-                    size: "large",
-                    type: "standard",
-                    shape: "circle",
-                    locale: "pt-BR",
-                    logo_alignment: "left",
-                } // customization attributes
-            );
+    verificarlogin();
 
-        }
+    /// FUNCAO VERIFICA SE O COOKIE JWT ESTA COM OS DADOS E  MANTEM O LOGIN
+    function verificarlogin() {
+        const perfil = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('jwt='))
 
-        function handleCredentialResponse(response) {
+        if (perfil != undefined) {
+            const perfil = document.cookie
+                .split('; ')
+                .find(row => row.startsWith('jwt='))
+                .split('=')[1];
 
-            // O DATA EXTRAI O JWT E RETORNA OS DADOS DO USUARIO
-            const data = jwt_decode(response.credential)
-                // CRIA O COOKIE PARA MANTER O JWT
+            const data = jwt_decode(perfil);
             console.log(data);
-            Cookies.set('jwt', response.credential, {
-                expires: 0.1
-            });
-            // ABRE MODAL PARA LOGIN
-            $("#myModal").modal("hide");
 
-            let perfil = '';
-            perfil += '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfil();>'
-            perfil += '<div class="abaperfil" id="abaperfil">'
-            perfil += '<a href="/perfil">Meu Perfil</a>'
-            perfil += '<a href="" onclick=fecharlogin();>Sair</a>'
-            perfil += '<span class="material-icons fecharperfil" onclick=fecharabaperfil();>close</span>'
-            perfil += '</div>'
+            let perfilaba = '';
+            perfilaba += '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfil();>'
+            perfilaba += '<div class="abaperfil" id="abaperfil">'
+            perfilaba += '<a href="/perfil">Meu Perfil</a>'
+            perfilaba += '<a href="" onclick=fecharlogin();>Sair</a>'
+            perfilaba += '<span class="material-icons fecharperfil" onclick=fecharabaperfil();>close</span>'
+            perfilaba += '</div>'
 
 
             let perfilabamobile = '';
@@ -278,96 +301,146 @@
             perfilabamobile += '<span class="material-icons fecharperfil" onclick=fecharabaperfilmobile();>close</span>'
             perfilabamobile += '</div>'
 
-            document.getElementById('imagemperfil').innerHTML = perfil
+            document.getElementById('imagemperfil').innerHTML = perfilaba
             document.getElementById('imagemperfilmobile').innerHTML = perfilabamobile
+        }
+    }
 
-            verificarCliente(data.sub);
+
+
+    async function verificarCliente(id) {
+        const resposta = await fetch('./apiBuscaCliente?id=' + id);
+        const body = await resposta.json();
+        if (body.length == 0) {
+            abrirCadastro();
+        } else {
+            return
+        }
+    }
+
+    function abrirCadastro() {
+        const modal = document.getElementById("containerFormulario");
+        modal.style.opacity = 1;
+        modal.style.zIndex = 9;
+    }
+
+    $(document).ready(function() {
+        $('#cpf').mask('000.000.000-00');
+        $('#data').mask('00/00/0000');
+        $('#telefone').mask('(00)00000-0000');
+        $('#numero').mask('###0');
+        $('#cep').mask('00000-000');
+    });
+
+    async function validarCadastro() {
+        const cpf = document.getElementById("cpf");
+        const data = document.getElementById("data");
+        const telefone = document.getElementById("telefone");
+        const rua = document.getElementById("rua");
+        const numero = document.getElementById("numero");
+        const cep = document.getElementById("cep")
+        const cidade = document.getElementById("cidade");
+        const uf = document.getElementById("uf");
+
+        if (cpf.value == "") {
+            cpf.style.setProperty("--color", "red");
+            cpf.style.borderBottom = "2px solid red";
+        } else {
+            cpf.style.setProperty("--color", "white");
+            cpf.style.borderBottom = "2px solid white";
+        }
+        if (data.value == "") {
+            data.style.setProperty("--color", "red");
+            data.style.borderBottom = "2px solid red";
+        } else {
+            data.style.setProperty("--color", "white");
+            data.style.borderBottom = "2px solid white";
+        }
+        if (telefone.value == "") {
+            telefone.style.setProperty("--color", "red");
+            telefone.style.borderBottom = "2px solid red";
+        } else {
+            telefone.style.setProperty("--color", "white");
+            telefone.style.borderBottom = "2px solid white";
+        }
+        if (rua.value == "") {
+            rua.style.setProperty("--color", "red");
+            rua.style.borderBottom = "2px solid red";
+        } else {
+            rua.style.setProperty("--color", "white");
+            rua.style.borderBottom = "2px solid white";
+        }
+        if (numero.value == "") {
+            numero.style.setProperty("--color", "red");
+            numero.style.borderBottom = "2px solid red";
+        } else {
+            numero.style.setProperty("--color", "white");
+            numero.style.borderBottom = "2px solid white";
+        }
+        if (cep.value == "") {
+            cep.style.setProperty("--color", "red");
+            cep.style.borderBottom = "2px solid red";
+        } else {
+            cep.style.setProperty("--color", "white");
+            cep.style.borderBottom = "2px solid white";
+        }
+        if (cidade.value == "") {
+            cidade.style.setProperty("--color", "red");
+            cidade.style.borderBottom = "2px solid red";
+        } else {
+            cidade.style.setProperty("--color", "white");
+            cidade.style.borderBottom = "2px solid white";
+        }
+        if (uf.value == "") {
+            uf.style.setProperty("--color", "red");
+            uf.style.borderBottom = "2px solid red";
+        } else {
+            uf.style.setProperty("--color", "white");
+            uf.style.borderBottom = "2px solid white";
         }
 
+    }
+    async function buscarcep(cep) {
+        const ceplimpo = cep.replace(/[^0-9]+/, '');
 
+        const url = 'https://viacep.com.br/ws/' + ceplimpo + '/json/';
+        const resposta = await fetch(url);
+        const body = await resposta.json();
 
-        verificarlogin();
+        document.getElementById("cidade").value = body.localidade;
+        document.getElementById("uf").value = body.uf;
+    }
+    async function criarCliente() {
+        const perfil = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('jwt='))
+        const dados = jwt_decode(perfil);
 
-        /// FUNCAO VERIFICA SE O COOKIE JWT ESTA COM OS DADOS E  MANTEM O LOGIN
-        function verificarlogin() {
-            const perfil = document.cookie
-                .split('; ')
-                .find(row => row.startsWith('jwt='))
+        try {
 
-            if (perfil != undefined) {
-                const perfil = document.cookie
-                    .split('; ')
-                    .find(row => row.startsWith('jwt='))
-                    .split('=')[1];
+            const data = {
+                ID: dados.sub,
+                email: dados.email,
+                nome: dados.name,
+                idade: "23",
+            };
 
-                const data = jwt_decode(perfil);
-                console.log(data);
+            fetch('./apiCriarCliente', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                })
+                .then((response) => response.json())
+                //.then(response => console.log(response.status))
+                .then((data) => {
+                    console.log("retorno front: " + JSON.stringify(data))
+                })
 
-                let perfilaba = '';
-                perfilaba += '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfil();>'
-                perfilaba += '<div class="abaperfil" id="abaperfil">'
-                perfilaba += '<a href="/perfil">Meu Perfil</a>'
-                perfilaba += '<a href="" onclick=fecharlogin();>Sair</a>'
-                perfilaba += '<span class="material-icons fecharperfil" onclick=fecharabaperfil();>close</span>'
-                perfilaba += '</div>'
-
-
-                let perfilabamobile = '';
-                perfilabamobile += '<img src="' + data.picture + '"" alt="" width="150px" height="150px" onclick=meuperfilmobile();>'
-                perfilabamobile += '<div class="abaperfil" id="abaperfilmobile">'
-                perfilabamobile += '<a href="/perfil">Meu Perfil</a>'
-                perfilabamobile += '<a href="" onclick=fecharlogin();>Sair</a>'
-                perfilabamobile += '<span class="material-icons fecharperfil" onclick=fecharabaperfilmobile();>close</span>'
-                perfilabamobile += '</div>'
-
-                document.getElementById('imagemperfil').innerHTML = perfilaba
-                document.getElementById('imagemperfilmobile').innerHTML = perfilabamobile
-            }
+        } catch (error) {
+            console.log(error);
         }
-
-
-
-        async function verificarCliente(id) {
-            const resposta = await fetch('./apiBuscaCliente?id=' + id);
-            const body = await resposta.json();
-            if (body.length == 0) {
-                criarCliente();
-            } else {
-                return
-            }
-        }
-
-        async function criarCliente() {
-            const perfil = document.cookie
-                .split('; ')
-                .find(row => row.startsWith('jwt='))
-            const dados = jwt_decode(perfil);
-
-            try {
-
-                const data = {
-                    ID: dados.sub,
-                    email: dados.email,
-                    nome: dados.name,
-                    idade: "23",
-                };
-
-                fetch('./apiCriarCliente', {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(data),
-                    })
-                    .then((response) => response.json())
-                    //.then(response => console.log(response.status))
-                    .then((data) => {
-                        console.log("retorno front: " + JSON.stringify(data))
-                    })
-
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    </script>
+    }
+</script>
 </div>
