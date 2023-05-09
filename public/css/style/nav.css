@@ -178,6 +178,153 @@
     top: -0.5em !important;
 }
 
+
+/* Formulario */
+
+#containerFormulario {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    /* background: black; */
+    background-color: #000000bf;
+    height: 150em;
+    z-index: 9;
+    opacity: 1;
+    transition: 1s all ease;
+}
+
+.form {
+    width: 40em;
+    background: linear-gradient(180deg, rgba(3, 25, 6, 1) 0%, rgba(3, 66, 9, 1) 78%, rgba(0, 150, 6, 1) 100%);
+    border-radius: 8px;
+    box-shadow: 0 0 40px -10px #000;
+    margin: calc(50vh - 220px) auto;
+    padding: 20px 30px;
+    max-width: calc(100vw - 40px);
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    z-index: 10;
+    margin-top: 5em;
+}
+
+.form h2 {
+    margin: 10px 0;
+    padding-bottom: 10px;
+    color: white;
+    border-bottom: 3px solid white
+}
+
+.form h3 {
+    margin: 10px 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid white;
+    font-size: 1.5em;
+    margin-top: 3em;
+    color: white;
+}
+
+.form input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background: none;
+    outline: none;
+    resize: none;
+    border: 0;
+    font-family: 'Montserrat', sans-serif;
+    transition: all .3s;
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+.form input:focus {
+    border-bottom: 2px solid #78788c
+}
+
+.form p:before {
+    content: attr(type);
+    display: block;
+    margin: 28px 0 0;
+    font-size: 14px;
+    color: white
+}
+
+.cadastrar {
+    float: right;
+    padding: 8px 12px;
+    margin: 8px 0 0;
+    font-family: 'Montserrat', sans-serif;
+    border: 0.15em solid white;
+    background: 0;
+    border-radius: 10%;
+    color: white;
+    cursor: pointer;
+    transition: all .3s;
+    font-weight: 600;
+}
+
+.cadastrar:hover {
+    background: rgba(3, 25, 6, 1);
+    color: white;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.cancelar {
+    float: left;
+    padding: 8px 12px;
+    margin: 8px 0 0;
+    font-family: 'Montserrat', sans-serif;
+    border: 0.15em solid red;
+    background: #af0808f7;
+    border-radius: 10%;
+    color: white;
+    cursor: pointer;
+    transition: all .3s;
+    font-weight: 600;
+}
+
+.cancelar:hover {
+    background: rgb(88, 2, 2);
+    color: white;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+#cpf::placeholder {
+    color: var(--color);
+}
+
+#data::placeholder {
+    color: var(--color);
+}
+
+#rua::placeholder {
+    color: var(--color);
+}
+
+#numero::placeholder {
+    color: var(--color);
+}
+
+#telefone::placeholder {
+    color: var(--color);
+}
+
+#cep::placeholder {
+    color: var(--color);
+}
+
+#cidade::placeholder {
+    color: var(--color);
+}
+
+#uf::placeholder {
+    color: var(--color);
+}
+
 @media screen and (max-width: 730px) {
     .menuDesktop {
         display: none;
