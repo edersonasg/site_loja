@@ -188,7 +188,7 @@
     justify-content: center;
     /* background: black; */
     background-color: #000000bf;
-    height: 150em;
+    height: 110em;
     z-index: -10;
     opacity: 0;
     transition: 1s all ease;
@@ -378,9 +378,9 @@
     }
     .car span {
         color: white;
-        font-size: 3.5em;
+        font-size: 2.5em;
         top: 0.5em;
-        margin-top: 0.2em;
+        margin-top: 0.5em;
         margin-left: 0em;
     }
     .car {

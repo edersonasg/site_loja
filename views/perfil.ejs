@@ -69,16 +69,6 @@
 
                     </div>
                     <div id="pedidosPerfil" class="pedidosPerfil">
-                        <div class="pedido">
-                            <p>#20230429170513 </p>
-                            <p class="dataPedido">29/04/2023</p>
-                            <p class="valorPedido">R$230,00</p>
-                        </div>
-                        <div class="pedido">
-                            <p>#20230429170513 </p>
-                            <p class="dataPedido">29/04/2023</p>
-                            <p class="valorPedido">R$230,00</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -182,7 +172,20 @@
                     dadosEndereco += '<span class="material-icons">explore</span><p>UF: ' + body[0].uf + '</p>'
                     document.getElementById("enderecoPerfil").innerHTML = dadosEndereco;
 
+                    let pedidos = ''
 
+                    const itens = Object.keys(body[0].pedidos).length; // verifica a qauntidades de propriedades dentro do json
+
+                    for (i = 1; i <= itens; i++) { //-1 do prototype do obj
+                        console.log(i);
+                        pedidos += '<div class="pedido">'
+                        pedidos += '<p>#' + body[0].pedidos["pedido" + i].ID_pedido + '</p>'
+                        pedidos += '<p class="dataPedido">' + body[0].pedidos["pedido" + i].data_pedido + '</p>'
+                        pedidos += '<p class="valorPedido">' + body[0].pedidos["pedido" + i].valor_pedido + '</p>'
+                        pedidos += '</div>'
+                    }
+
+                    document.getElementById("pedidosPerfil").innerHTML = pedidos;
                 }
             </script>
 </body>

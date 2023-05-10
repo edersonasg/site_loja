@@ -1,63 +1,3 @@
-<!--<nav class="nav">
-    <div class="container menu">
-        <div class="row">
-            <div class=" col-2 logo">
-                <img src="/images/logo.png" width="50">
-            </div>
-            <div class="col-10 auto main_list" id="mainListDiv">
-                <ul class="principalMenu">
-                    <li><a href="/produtos">Inicio</a></li>
-                    <li>
-                        <a href="/usuarios">Masculino</a>
-                        <ul class="submenu">
-                            <li><a href="/produtos">Calças</a></li>
-                            <li><a href="/produtos">Blusas</a></li>
-                            <li><a href="/produtos">Camisetas</a></li>
-                            <li><a href="/produtos">Meias</a></li>
-                            <li><a href="/produtos">Shorts</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/cadastro">Feminino</a>
-                        <ul class="submenu">
-                            <li><a href="/produtos">Calças</a></li>
-                            <li><a href="/produtos">Blusas</a></li>
-                            <li><a href="/produtos">Camisetas</a></li>
-                            <li><a href="/produtos">Meias</a></li>
-                            <li><a href="/produtos">Shorts</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/produtos">Infantil</a>
-                        <ul class="submenu">
-                            <li><a href="/produtos">Calças</a></li>
-                            <li><a href="/produtos">Blusas</a></li>
-                            <li><a href="/produtos">Camisetas</a></li>
-                            <li><a href="/produtos">Meias</a></li>
-                            <li><a href="/produtos">Shorts</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-sm-10 menuMobile">
-                <div>
-                    <button>Menu</button>
-                    <ul>
-                        <li><a href="/produtos">Inicio</a></li>
-                        <li>
-                            <a href="/usuarios">Masculino</a>
-                        </li>
-                        <li>
-                            <a href="/usuarios">Feminino</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-
-!-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
@@ -303,6 +243,9 @@
 
             document.getElementById('imagemperfil').innerHTML = perfilaba
             document.getElementById('imagemperfilmobile').innerHTML = perfilabamobile
+
+            const ocultarFormulario = document.getElementById("containerFormulario");
+            ocultarFormulario.style.display = "none";
         }
     }
 
@@ -549,6 +492,8 @@
                 //.then(response => console.log(response.status))
                 .then((data) => {
                     console.log("retorno front: " + JSON.stringify(data))
+                    const ocultarFormulario = document.getElementById("containerFormulario");
+                    ocultarFormulario.style.display = "none";
                 })
 
         } catch (error) {
