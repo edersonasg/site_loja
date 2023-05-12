@@ -45,7 +45,6 @@ async function adicionarCarrinho(carrinho, bodyRequest) {
 router.post('/', async(req, res) => {
     if (req.body) {
         const carrinho = parseInt(req.query.quantidadeCarrinho) + 1;
-        console.log(carrinho);
         const cadastro = await adicionarCarrinho(carrinho, req.body);
         return res.send(cadastro);
     }

@@ -234,7 +234,11 @@
                 console.log(error);
             }
         } else {
+            $('html, body').animate({
+                scrollTop: $("#menuMobile").offset().top
+            }, -1000);
             modal();
+            loginmobile();
         }
     }
 </script>
