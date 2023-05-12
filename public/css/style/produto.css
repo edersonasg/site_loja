@@ -201,20 +201,50 @@ body::-webkit-scrollbar-thumb {
     border-color: #363636;
 }
 
+.addcarrinho {
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    font-family: 'Arimo', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    background-color: #1d221d6e;
+    /* padding: 0.5em 4em; */
+    text-align: center;
+    color: white;
+    user-select: none;
+    border-radius: 0 2em 0 2em;
+}
+
+.addcarrinho:hover {
+    color: white;
+    box-shadow: 1px 0px 12px 7px #266e09;
+    border: 2px solid #5b6059;
+    background: radial-gradient(circle, rgba(70, 60, 60, 1) 0%, rgba(72, 98, 78, 1) 68%, rgba(33, 70, 44, 1) 100%);
+    border-radius: 0 2em;
+    transition: 0.5s all ease;
+}
+
 .comprar {
     text-decoration: none;
-    background-color: #363636;
-    padding: 1rem 4rem;
-    border-radius: 10rem;
-    color: white;
-    font-size: 1rem;
+    padding: 1rem 4.5rem;
     font-family: 'Arimo', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1.1em;
+    background-color: #27a71f6e;
+    /* padding: 0.5em 4em; */
+    text-align: center;
+    color: white;
+    user-select: none;
+    border-radius: 0 2em 0 2em;
 }
 
 .comprar:hover {
-    background-image: linear-gradient(to right, #363636, #535353, #838383, #aaaaaa);
     color: white;
+    box-shadow: 1px 0px 12px 7px #266e09;
+    border: 2px solid #5b6059;
+    background: radial-gradient(circle, rgba(2, 55, 4, 1) 15%, rgba(3, 73, 5, 1) 46%, rgba(3, 97, 6, 1) 68%, rgba(0, 148, 6, 1) 100%);
+    border-radius: 0 2em;
+    transition: 0.5s all ease;
 }
 
 .linhaComprar {

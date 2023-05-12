@@ -184,7 +184,7 @@
 #containerFormulario {
     width: 100%;
     position: absolute;
-    display: flex;
+    display: none;
     justify-content: center;
     /* background: black; */
     background-color: #000000bf;

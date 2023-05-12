@@ -61,15 +61,15 @@
                         <p id="desconto"></p>
                         <h3 id="parcelamento"></h3>
                         <div class="row selectTamanho">
-                            <div class="col-md-5 col-sm-12">
-                                <span class="tamanhos esgotado" id="tamanhopp">
+                            <div class="col-md-5 col-sm-12" id="divPP">
+                                <span class="tamanhos" id="tamanhopp">
                                 <label for="pp" class="tam">
                                     <input id="pp" type="radio" name="size" data-testid="product-size-PP" class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhopp" onclick="selecionado(id)">
                                     PP
                                 </label>
                                </span>
                             </div>
-                            <div class="col-md-5 col-sm-12">
+                            <div class="col-md-5 col-sm-12" id="divP">
                                 <span class="tamanhos" id="tamanhop">
                                 <label for="p" class="tam">
                                     <input id="p" type="radio" name="size" data-testid="product-size-p" class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhop" onclick="selecionado(id)">
@@ -77,7 +77,7 @@
                                 </label>
                                </span>
                             </div>
-                            <div class="col-md-5 col-sm-12">
+                            <div class="col-md-5 col-sm-12" id="divM">
                                 <span class="tamanhos" id="tamanhom">
                                 <label for="m">
                                     <input id="m" type="radio"  name="size" data-testid="product-size-m" class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhom" onclick="selecionado(id)">
@@ -85,7 +85,7 @@
                                 </label>
                                </span>
                             </div>
-                            <div class="col-md-5 col-sm-12">
+                            <div class="col-md-5 col-sm-12" id="divG">
                                 <span class="tamanhos" id="tamanhog">
                                 <label for="g">
                                     <input id="g" type="radio" name="size" data-testid="product-size-g" class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhog" onclick="selecionado(id)">
@@ -96,6 +96,9 @@
                         </div>
                         <div class="row linhaComprar">
                             <div class="col-md-10">
+                                <a class="addcarrinho" onclick="adicionarCarrinho();">ADICONAR AO CARRINHO</a>
+                            </div>
+                            <div class="col-md-10" style="margin-top: 3em;">
                                 <a class="comprar" href="/carrinho">COMPRAR</a>
                             </div>
                         </div>
@@ -128,6 +131,13 @@
         const resposta = await fetch('./apiDetalheProduto?id=' + CatParam);
         const body = await resposta.json();
         let foto = ''
+
+        var float = parseFloat(body[0].preco_produto.toFixed(2));
+        // console.log(float);
+        var preco = float.toLocaleString('pt-br', {
+            minimumFractionDigits: 2
+        }); // FORMATA O PREÇO DE INT PARA MOEDA BR
+
         for (i = 1; i <= body[0].fotos_produto; i++) {
             foto += '<li>'
             foto += '<a href="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[0].ID + '/produto' + [i] + '.png"></a>'
@@ -142,7 +152,7 @@
 
         document.getElementById('subcategoria').innerHTML = body[0].subcategoria_produto;
         document.getElementById('nome').innerHTML = body[0].nome_produto;
-        document.getElementById('preco').innerHTML = "R$ " + body[0].preco_produto;
+        document.getElementById('preco').innerHTML = "R$ " + preco;
         if (body[0].parcelamento_produto) {
             document.getElementById('parcelamento').innerHTML = "ou R$ " + body[0].parcelamento_produto;
         }
@@ -152,6 +162,80 @@
         loader.style.display = "none";
         var loader = document.getElementById("prods");
         loader.style.display = "flex";
+
+        const tamanhosDisponiveis = body[0].tamanho_produto;
+        if (tamanhosDisponiveis.quantidade_pp < 1) {
+            document.getElementById("divPP").style.display = "none";
+        }
+        if (tamanhosDisponiveis.quantidade_p < 1) {
+            document.getElementById("divP").style.display = "none";
+        }
+        if (tamanhosDisponiveis.quantidade_m < 1) {
+            document.getElementById("divM").style.display = "none";
+        }
+        if (tamanhosDisponiveis.quantidade_g < 1) {
+            document.getElementById("divG").style.display = "none";
+        }
+    }
+
+
+    /// FUNCAO CONSULTA A QUANTIDADE DE ITENS NO CARRINHO
+    async function consultarCarrinho() {
+        const perfil = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('jwt='))
+        const dados = jwt_decode(perfil);
+
+        const resposta = await fetch('./apiBuscaCliente?id=' + dados.sub);
+        const body = await resposta.json();
+        const carrinho = Object.keys(body[0].carrinho).length;
+        const idCliente = body[0].ID;
+        return carrinho; // RETORNA O VALOR DA VARIAVEL
+    }
+
+    async function adicionarCarrinho() {
+
+        const perfil = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('jwt='))
+
+
+        if (perfil != undefined) {
+            const dados = jwt_decode(perfil);
+            const urlParams = new URLSearchParams(window.location.search);
+            const IDproduto = urlParams.get('id');
+            const qtdcarrinho = await consultarCarrinho(); // ESPERA A RESPOSTA DA FUNCAO consultarCarrinho()
+            const id = dados.sub;
+            try {
+
+                const data = {
+                    ID_produto: parseInt(IDproduto),
+                    quantidade_produto: 1,
+                    tamanho_produto: "M",
+                    id_cliente: id,
+                };
+
+                fetch('./apiAdicionarCarrinho?quantidadeCarrinho=' + qtdcarrinho, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(data),
+                    })
+                    .then((response) => response.json())
+                    //.then(response => console.log(response.status))
+                    .then((data) => {
+                        console.log("retorno front: " + JSON.stringify(data))
+                        const ocultarFormulario = document.getElementById("containerFormulario");
+                        ocultarFormulario.style.display = "none";
+                    })
+
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            modal();
+        }
     }
 </script>
 

@@ -45,7 +45,7 @@
                 </ul>
             </div>
             <div class="col-1 car">
-                <a href="/carrinho"><span class="material-icons">shopping_cart</span></a>
+                <a onclick="verificarCarrinho();"><span class="material-icons">shopping_cart</span></a>
             </div>
             <div class="col-1 perfil" id="imagemperfil">
                 <a onclick="modal();"><span class="material-icons">person</span></a>
@@ -263,6 +263,7 @@
 
     function abrirCadastro() {
         const modal = document.getElementById("containerFormulario");
+        modal.style.display = "flex";
         modal.style.opacity = 1;
         modal.style.zIndex = 9;
     }
@@ -498,6 +499,18 @@
 
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    function verificarCarrinho() {
+        const perfil = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('jwt='))
+
+        if (perfil == undefined) {
+            modal();
+        } else {
+            window.location.href = "/carrinho";
         }
     }
 </script>
