@@ -1,0 +1,105 @@
+.container-produto {
+    margin-bottom: 5.5em;
+}
+
+.titulo {
+    margin-top: 3em;
+}
+
+.titulo h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.8em;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5em;
+    text-shadow: 2px 0px 20px #020202;
+}
+
+.prod {
+    border-bottom: 1px solid #27a71f;
+    padding-bottom: 2.5em;
+    padding-top: 2.5em;
+    box-shadow: 1px 3px 20px 0px black;
+    width: 99%;
+    margin: 1em auto;
+}
+
+.imagemproduto {
+    width: 50%;
+    margin-left: 10em;
+}
+
+.produto {
+    margin-top: 2em;
+    margin-left: -5em;
+}
+
+.valor {
+    font-family: 'Arimo', sans-serif;
+    color: #363636a3;
+    margin-top: 0.5em;
+}
+
+.tamanho {
+    font-weight: 500;
+    color: black;
+    margin-top: -1em;
+}
+
+.tamanhoproduto {
+    font-family: 'Arimo', sans-serif;
+    color: #363636a3;
+    text-decoration: none;
+}
+
+.delete {
+    margin-top: 0.5em;
+    color: black;
+    border: 1px solid black;
+    border-radius: 0.2em;
+    padding: 0.1em;
+}
+
+.cod {
+    font-family: 'Arial', sans-serif;
+    color: #b30707;
+    font-size: 0.8em;
+}
+
+.quantidade {
+    font-weight: 500;
+    color: black;
+    margin-top: -0.5em;
+    margin-bottom: 0.2em;
+}
+
+.selectqtn {
+    width: 4em;
+    box-shadow: 1px 3px 5px 4px rgba(15, 17, 17, .15);
+}
+
+.nomeproduto {
+    font-family: 'Arimo', sans-serif;
+    line-height: 0px;
+    margin-top: -0.5em;
+    padding-top: 0em;
+    position: absolute;
+}
+
+@media screen and (max-width: 720px) {
+    .titulo {
+        margin-top: 3em;
+        padding-bottom: 2em;
+    }
+    .titulo h1 {
+        font-size: 1.2em;
+    }
+    .imagemproduto {
+        width: 12em;
+        margin-left: 0;
+    }
+    .produto {
+        margin-top: 2em;
+        margin-left: 4em;
+    }
+}

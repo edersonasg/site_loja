@@ -19,7 +19,7 @@ async function consulta(id) {
 
     try {
         const dados = await dynamodb.scan(params).promise();
-        return dados.Items;
+        return dados.Items[0].carrinho;
     } catch (err) {
         console.log('err', err);
         return null;

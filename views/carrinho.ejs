@@ -32,151 +32,86 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.861.0.min.js"></script>
 
 </head>
 
 <body>
     <%- include('nav.ejs') %>
 
-        <h1>Photo Album Viewer</h1>
-        <div id="viewer">
+        <div class="container-fluid container-produto">
+            <div class="row titulo">
+                <div class="col-12">
+                    <h1>Carrinho</h1>
+                </div>
+            </div>
+            <div id="prods">
+                <!--<div class="col-4">
+                    <img class="imagemproduto" src="https://bucketgarb.s3.us-east-2.amazonaws.com/1/produto1.png" alt="produto1">
+                </div>
+                <div class="col-8">-->
+
+                <!--  <div class="row produto">
+                        <div class="col-md-12">
+                            <p class="nomeproduto">Camiseta Nike</p>
+                            <p class="cod">COD. 1</p>
+                            <p class="quantidade">Qtnd: </p>
+                            <select class="form-select selectqtn" aria-label="Disabled select example">
+                                <option selected value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                              </select><span class="material-icons delete">delete</span>
+                            <p class="valor">R$ 159,99</p>
+                            <p class="tamanho">Tam:
+                                <a class="tamanhoproduto">M</a>
+                            </p>
+                        </div>
+                    </div> -->
+            </div>
+        </div>
         </div>
 
         <%- include('footer.ejs') %>
+            <script>
+                consultarCarrinho();
+                async function consultarCarrinho() {
+                    const perfil = document.cookie
+                        .split('; ')
+                        .find(row => row.startsWith('jwt='))
+                    const dados = jwt_decode(perfil);
 
-            <script type="text/javascript ">
-                /*
-                                                               var albumBucketName = 'bucketgarb';
-                                                            
-                                                                AWS.config.region = 'us-east-2'; // Região
-                                                                AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-                                                                    IdentityPoolId: 'us-east-2:db237e02-158b-4585-9f7c-25782e6491cc',
-                                                                });
-
-                                                                // Create a new service object
-                                                                var s3 = new AWS.S3({
-                                                                    apiVersion: '2006-03-01',
-                                                                    params: {
-                                                                        Bucket: albumBucketName
-                                                                    }
-                                                                });
-
-                                                                // A utility function to create HTML.
-                                                                function getHtml(template) {
-                                                                    return template.join('\n');
-                                                                }*/
-
-                listAlbums();
-                //
-                // Functions
-                //
-
-                // List the photo albums that exist in the bucket.
-                async function listAlbums() {
-                    const resposta = await fetch('./s3teste');
+                    const resposta = await fetch('./apiConsultaCarrinho?id=' + dados.sub);
                     const body = await resposta.json();
+                    const carrinho = Object.keys(body).length;
 
-                    s3.listObjects({
-                        Delimiter: '/'
-                    }, function(err, data) {
-                        if (err) {
-                            return alert('There was an error listing your albums: ' + err.message);
-                        } else {
-                            var albums = data.CommonPrefixes.map(function(commonPrefix) {
-                                var prefix = commonPrefix.Prefix;
-                                var albumName = decodeURIComponent(prefix.replace('/', ''));
-                                return getHtml([
-                                    '<li>',
-                                    '<button style="margin:5px;" onclick="viewAlbum(\'' + albumName + '\')">',
-                                    albumName,
-                                    '</button>',
-                                    '</li>'
-                                ]);
-                            });
-                            var message = albums.length ?
-                                getHtml([
-                                    '<p>Click on an album name to view it.</p>',
-                                ]) :
-                                '<p>You do not have any albums. Please Create album.';
-                            var htmlTemplate = [
-                                '<h2>Albums</h2>',
-                                message,
-                                '<ul>',
-                                getHtml(albums),
-                                '</ul>',
-                            ]
-                            document.getElementById('viewer').innerHTML = getHtml(htmlTemplate);
-                        }
-                    });
-                }
+                    let car = ''
+                    for (i = 1; i <= carrinho; i++) {
+                        car += '<div class="row prod">'
+                        car += '<div class="col-4">'
+                        car += '<img class="imagemproduto" src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body["item" + i].ID_produto + '/produto1.png" alt="produto1">'
+                        car += '</div>'
+                        car += '<div class="col-8">'
+                        car += '<div class="row produto">'
+                        car += '<div class="col-md-12">'
+                        car += '<p class="nomeproduto">Camiseta Nike</p>'
+                        car += '<p class="cod">COD. 1</p>'
+                        car += '<p class="quantidade">Qtnd: </p>'
+                        car += '<select class="form-select selectqtn" aria-label="Disabled select example">'
+                        car += '<option selected value="1">1</option>'
+                        car += '<option value="2">2</option>'
+                        car += '<option value="3">3</option>'
+                        car += '</select><span class="material-icons delete">delete</span>'
+                        car += '<p class="valor">R$ 159,99</p>'
+                        car += '<p class="tamanho">Tam:'
+                        car += '<a class="tamanhoproduto">M</a>'
+                        car += '</p>'
+                        car += '</div>'
+                        car += '</div>'
+                        car += '</div>'
+                        car += '</div>'
+                    }
+                    document.getElementById("prods").innerHTML = car;
 
-                // Show the photos that exist in an album.
-                async function viewAlbum(albumName) {
-                    const resposta = await fetch('./usersAPI');
-                    const body = await resposta.json();
-                    console.log(body);
-                    var albumPhotosKey = encodeURIComponent(albumName) + '/';
-                    s3.listObjects({
-                        Prefix: albumPhotosKey
-                    }, function(err, data) {
-                        if (err) {
-                            return alert('There was an error viewing your album: ' + err.message);
-                        }
-                        // 'this' references the AWS.Request instance that represents the response
-                        var href = this.request.httpRequest.endpoint.href;
-                        var bucketUrl = href + albumBucketName + '/';
-
-                        var photos = data.Contents.map(function(photo) {
-                            var photoKey = photo.Key;
-                            var photoUrl = bucketUrl + encodeURIComponent(photoKey);
-
-                            return getHtml([
-                                '<span>',
-                                '<div>',
-                                '<br/>',
-                                '<img style="width:128px;height:128px;" src="' + photoUrl + '"/>',
-                                '</div>',
-                                '<div>',
-                                '<span>',
-                                body[0].Nome_Produto,
-                                '</span>',
-                                '<span>',
-                                body[0].Tamanho_Produto.Tamanho_M,
-                                body[0].Tamanho_Produto.Quantidade_M,
-                                '</span>',
-                                '</div>',
-                                '</span>',
-                            ]);
-                        });
-                        var message = photos.length ?
-                            '<p>The following photos are present.</p>' :
-                            '<p>There are no photos in this album.</p>';
-                        var htmlTemplate = [
-                            '<div>',
-                            '<button onclick="listAlbums()">',
-                            'Back To Albums',
-                            '</button>',
-                            '</div>',
-                            '<h2>',
-                            'Album: ' + albumName,
-                            '</h2>',
-                            message,
-                            '<div>',
-                            getHtml(photos),
-                            '</div>',
-                            '<h2>',
-                            'End of Album: ' + albumName,
-                            '</h2>',
-                            '<div>',
-                            '<button onclick="listAlbums()">',
-                            'Back To Albums',
-                            '</button>',
-                            '</div>',
-                        ]
-                        document.getElementById('viewer').innerHTML = getHtml(htmlTemplate);
-                        document.getElementsByTagName('img')[0].setAttribute('style', 'display:none;');
-                    });
                 }
             </script>
+
 </body>

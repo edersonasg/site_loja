@@ -49,7 +49,7 @@ router.post('/', async(req, res) => {
         return res.send(cadastro);
     }
 
-    return res.status(500).json({ mensagem: "Usuario não cadastrado" });
+    return res.status(500).json({ mensagem: "Item nao adicionado" });
 });
 
 module.exports = router;

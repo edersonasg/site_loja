@@ -207,12 +207,13 @@ body::-webkit-scrollbar-thumb {
     font-family: 'Arimo', sans-serif;
     font-weight: 600;
     font-size: 1em;
-    background-color: #1d221d6e;
+    background-color: #1d221d;
     /* padding: 0.5em 4em; */
     text-align: center;
     color: white;
     user-select: none;
     border-radius: 0 2em 0 2em;
+    box-shadow: 2px 1px 20px black;
 }
 
 .addcarrinho:hover {
@@ -230,12 +231,13 @@ body::-webkit-scrollbar-thumb {
     font-family: 'Arimo', sans-serif;
     font-weight: 600;
     font-size: 1.1em;
-    background-color: #27a71f6e;
+    background-color: #28a71f;
     /* padding: 0.5em 4em; */
     text-align: center;
     color: white;
     user-select: none;
     border-radius: 0 2em 0 2em;
+    box-shadow: 2px 1px 20px black;
 }
 
 .comprar:hover {
