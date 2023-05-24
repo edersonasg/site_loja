@@ -3,7 +3,7 @@ const router = express.Router();
 const AWS = require('aws-sdk');
 const { AwsConfig } = require('../credentials/dynamodb');
 
-const tableName = "clientes";
+const tableName = "carrinho";
 AWS.config.update(AwsConfig);
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
@@ -11,7 +11,7 @@ async function consulta(id) {
 
     var params = {
         TableName: tableName,
-        FilterExpression: "ID = :ID",
+        FilterExpression: "ID_cliente = :ID",
         ExpressionAttributeValues: {
             ":ID": id,
         }
@@ -19,7 +19,7 @@ async function consulta(id) {
 
     try {
         const dados = await dynamodb.scan(params).promise();
-        return dados.Items[0].carrinho;
+        return dados.Items;
     } catch (err) {
         console.log('err', err);
         return null;

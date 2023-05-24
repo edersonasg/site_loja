@@ -214,6 +214,7 @@ body::-webkit-scrollbar-thumb {
     user-select: none;
     border-radius: 0 2em 0 2em;
     box-shadow: 2px 1px 20px black;
+    cursor: pointer;
 }
 
 .addcarrinho:hover {

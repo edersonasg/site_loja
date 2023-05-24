@@ -32,7 +32,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
 </head>
 
 <body>
@@ -81,13 +80,13 @@
 
                     const resposta = await fetch('./apiConsultaCarrinho?id=' + dados.sub);
                     const body = await resposta.json();
-                    const carrinho = Object.keys(body).length;
+                    const carrinho = body.length;
 
                     let car = ''
-                    for (i = 1; i <= carrinho; i++) {
+                    for (i = 0; i <= carrinho-1; i++) {
                         car += '<div class="row prod">'
                         car += '<div class="col-4">'
-                        car += '<img class="imagemproduto" src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body["item" + i].ID_produto + '/produto1.png" alt="produto1">'
+                        car += '<img class="imagemproduto" src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[i].ID_produto + '/produto1.png" alt="produto1">'
                         car += '</div>'
                         car += '<div class="col-8">'
                         car += '<div class="row produto">'
@@ -99,7 +98,7 @@
                         car += '<option selected value="1">1</option>'
                         car += '<option value="2">2</option>'
                         car += '<option value="3">3</option>'
-                        car += '</select><span class="material-icons delete">delete</span>'
+                        car += '</select><span id='+body[i].ID+' class="material-icons delete" onclick=apagarItem(id);>delete</span>'
                         car += '<p class="valor">R$ 159,99</p>'
                         car += '<p class="tamanho">Tam:'
                         car += '<a class="tamanhoproduto">M</a>'
@@ -111,6 +110,17 @@
                     }
                     document.getElementById("prods").innerHTML = car;
 
+                }
+
+                async function apagarItem(id){
+                    try {
+                        fetch('./apiDeletarItemCarrinho?ID='+id , {
+                        method: "POST",
+                    })
+                    window.location.reload();
+                    } catch (error) {
+                       console.log(error);
+                    }
                 }
             </script>
 

@@ -17,6 +17,7 @@ const consultarCarrinho = require('./api/api-consultar-carrinho')
     //  ROTA API DE CRIACAO
 const criarCliente = require('./api/api-criar-cliente')
 const adicionarCarrinho = require('./api/api-adicionar-carrinho')
+const deletarItemCarrinho = require('./api/api-deletar-item-carrinho')
     // const s3route = require('./api/api-consulta-s3')
     //  ROTA TESTE API
 
@@ -67,6 +68,7 @@ app.use('/apiConsultaCarrinho', consultarCarrinho);
 // app.use POST
 app.use('/apiCriarCliente', criarCliente);
 app.use('/apiAdicionarCarrinho', adicionarCarrinho);
+app.use('/apiDeletarItemCarrinho', deletarItemCarrinho);
 //LOG
 app.listen(port, () => (
     console.log('Servidor iniciado na porta' + port)

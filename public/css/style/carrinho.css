@@ -58,6 +58,7 @@
     border: 1px solid black;
     border-radius: 0.2em;
     padding: 0.1em;
+    cursor: pointer;
 }
 
 .cod {

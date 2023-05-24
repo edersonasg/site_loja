@@ -24,8 +24,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
     <script src="/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 </head>
 
@@ -39,8 +48,22 @@
                 <div class="row">
                     <nav aria-label="Links visitados">
                         <ol class="Breadcrumb-styled__List-sc-bfc9ea9f-0 ickcoV">
-                            <li><a href="/produtos">Masculino</a><svg data-testid="ArrowRightIcon" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" viewBox="0 0 24 24" class="SvgIcon__Icon-sc-9dg20d-0 SvgIcon-sc-9dg20d-1 ClUqg sUzXt"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 12.0027C15.9993 12.2533 15.9065 12.4822 15.7537 12.6573L9.76541 19.6436C9.58197 19.8615 9.30716 20 9 20C8.44772 20 8 19.5523 8 19C8 18.7515 8.09067 18.5241 8.24075 18.3492L13.6829 12L8.24631 5.65725C8.09292 5.4815 8 5.2516 8 5C8 4.44771 8.44772 4 9 4C9.30374 4 9.57586 4.13542 9.75926 4.34917L15.7593 11.3492L15.7653 11.3563C15.9106 11.5289 15.9986 11.7512 16 11.9941L16 12L16 12.0027Z"></path></svg></li>
-                            <li><a href="/produtos">Roupas</a><svg data-testid="ArrowRightIcon" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" viewBox="0 0 24 24" class="SvgIcon__Icon-sc-9dg20d-0 SvgIcon-sc-9dg20d-1 ClUqg sUzXt"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 12.0027C15.9993 12.2533 15.9065 12.4822 15.7537 12.6573L9.76541 19.6436C9.58197 19.8615 9.30716 20 9 20C8.44772 20 8 19.5523 8 19C8 18.7515 8.09067 18.5241 8.24075 18.3492L13.6829 12L8.24631 5.65725C8.09292 5.4815 8 5.2516 8 5C8 4.44771 8.44772 4 9 4C9.30374 4 9.57586 4.13542 9.75926 4.34917L15.7593 11.3492L15.7653 11.3563C15.9106 11.5289 15.9986 11.7512 16 11.9941L16 12L16 12.0027Z"></path></svg></li>
+                            <li><a href="/produtos">Masculino</a><svg data-testid="ArrowRightIcon" aria-hidden="true"
+                                    version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" viewBox="0 0 24 24"
+                                    class="SvgIcon__Icon-sc-9dg20d-0 SvgIcon-sc-9dg20d-1 ClUqg sUzXt">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M16 12.0027C15.9993 12.2533 15.9065 12.4822 15.7537 12.6573L9.76541 19.6436C9.58197 19.8615 9.30716 20 9 20C8.44772 20 8 19.5523 8 19C8 18.7515 8.09067 18.5241 8.24075 18.3492L13.6829 12L8.24631 5.65725C8.09292 5.4815 8 5.2516 8 5C8 4.44771 8.44772 4 9 4C9.30374 4 9.57586 4.13542 9.75926 4.34917L15.7593 11.3492L15.7653 11.3563C15.9106 11.5289 15.9986 11.7512 16 11.9941L16 12L16 12.0027Z">
+                                    </path>
+                                </svg></li>
+                            <li><a href="/produtos">Roupas</a><svg data-testid="ArrowRightIcon" aria-hidden="true"
+                                    version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" viewBox="0 0 24 24"
+                                    class="SvgIcon__Icon-sc-9dg20d-0 SvgIcon-sc-9dg20d-1 ClUqg sUzXt">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M16 12.0027C15.9993 12.2533 15.9065 12.4822 15.7537 12.6573L9.76541 19.6436C9.58197 19.8615 9.30716 20 9 20C8.44772 20 8 19.5523 8 19C8 18.7515 8.09067 18.5241 8.24075 18.3492L13.6829 12L8.24631 5.65725C8.09292 5.4815 8 5.2516 8 5C8 4.44771 8.44772 4 9 4C9.30374 4 9.57586 4.13542 9.75926 4.34917L15.7593 11.3492L15.7653 11.3563C15.9106 11.5289 15.9986 11.7512 16 11.9941L16 12L16 12.0027Z">
+                                    </path>
+                                </svg></li>
                             <li id="subcat"></li>
                         </ol>
                     </nav>
@@ -63,35 +86,43 @@
                         <div class="row selectTamanho">
                             <div class="col-md-5 col-sm-12" id="divPP">
                                 <span class="tamanhos" id="tamanhopp">
-                                <label for="pp" class="tam">
-                                    <input id="pp" type="radio" name="size" data-testid="product-size-PP" class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhopp" onclick="selecionado(id)">
-                                    PP
-                                </label>
-                               </span>
+                                    <label for="pp" class="tam">
+                                        <input id="pp" type="radio" name="size" data-testid="product-size-PP"
+                                            class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhopp"
+                                            onclick="selecionado(id)">
+                                        PP
+                                    </label>
+                                </span>
                             </div>
                             <div class="col-md-5 col-sm-12" id="divP">
                                 <span class="tamanhos" id="tamanhop">
-                                <label for="p" class="tam">
-                                    <input id="p" type="radio" name="size" data-testid="product-size-p" class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhop" onclick="selecionado(id)">
-                                    P
-                                </label>
-                               </span>
+                                    <label for="p" class="tam">
+                                        <input id="p" type="radio" name="size" data-testid="product-size-p"
+                                            class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhop"
+                                            onclick="selecionado(id)">
+                                        P
+                                    </label>
+                                </span>
                             </div>
                             <div class="col-md-5 col-sm-12" id="divM">
                                 <span class="tamanhos" id="tamanhom">
-                                <label for="m">
-                                    <input id="m" type="radio"  name="size" data-testid="product-size-m" class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhom" onclick="selecionado(id)">
-                                    M
-                                </label>
-                               </span>
+                                    <label for="m">
+                                        <input id="m" type="radio" name="size" data-testid="product-size-m"
+                                            class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhom"
+                                            onclick="selecionado(id)">
+                                        M
+                                    </label>
+                                </span>
                             </div>
                             <div class="col-md-5 col-sm-12" id="divG">
                                 <span class="tamanhos" id="tamanhog">
-                                <label for="g">
-                                    <input id="g" type="radio" name="size" data-testid="product-size-g" class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhog" onclick="selecionado(id)">
-                                    G
-                                </label>
-                               </span>
+                                    <label for="g">
+                                        <input id="g" type="radio" name="size" data-testid="product-size-g"
+                                            class="TextBox__VisuallyHiddenInput-sc-4fb91f0d-2 tamprod" value="tamanhog"
+                                            onclick="selecionado(id)">
+                                        G
+                                    </label>
+                                </span>
                             </div>
                         </div>
                         <div class="row linhaComprar">
@@ -109,8 +140,12 @@
         <%- include('footer.ejs') %>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js " integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk " crossorigin="anonymous "></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js " integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK " crossorigin="anonymous "></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js "
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk " crossorigin="anonymous ">
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js "
+    integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK " crossorigin="anonymous ">
+    </script>
 <script src="/js/bootstrap.min.js "></script>
 
 <script>
@@ -140,8 +175,10 @@
 
         for (i = 1; i <= body[0].fotos_produto; i++) {
             foto += '<li>'
-            foto += '<a href="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[0].ID + '/produto' + [i] + '.png"></a>'
-            foto += '<img src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[0].ID + '/produto' + [i] + '.png" alt="" width="400px" height="450px">'
+            foto += '<a href="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[0].ID + '/produto' + [i] +
+                '.png"></a>'
+            foto += '<img src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[0].ID + '/produto' + [i] +
+                '.png" alt="" width="400px" height="450px">'
             foto += '</li>'
         }
         document.getElementById('fotoProduto').innerHTML = foto;
@@ -156,7 +193,8 @@
         if (body[0].parcelamento_produto) {
             document.getElementById('parcelamento').innerHTML = "ou R$ " + body[0].parcelamento_produto;
         }
-        document.getElementById('subcat').innerHTML = "<a  href=/produtos?categoria=" + body[0].categoria_produto + ">" + body[0].subcategoria_produto + "</a>";
+        document.getElementById('subcat').innerHTML = "<a  href=/produtos?categoria=" + body[0].categoria_produto +
+            ">" + body[0].subcategoria_produto + "</a>";
 
         var loader = document.getElementById("loader");
         loader.style.display = "none";
@@ -179,20 +217,6 @@
     }
 
 
-    /// FUNCAO CONSULTA A QUANTIDADE DE ITENS NO CARRINHO
-    async function consultarCarrinho() {
-        const perfil = document.cookie
-            .split('; ')
-            .find(row => row.startsWith('jwt='))
-        const dados = jwt_decode(perfil);
-
-        const resposta = await fetch('./apiBuscaCliente?id=' + dados.sub);
-        const body = await resposta.json();
-        const carrinho = Object.keys(body[0].carrinho).length;
-        const idCliente = body[0].ID;
-        return carrinho; // RETORNA O VALOR DA VARIAVEL
-    }
-
     async function adicionarCarrinho() {
 
         const perfil = document.cookie
@@ -204,24 +228,33 @@
             const dados = jwt_decode(perfil);
             const urlParams = new URLSearchParams(window.location.search);
             const IDproduto = urlParams.get('id');
-            const qtdcarrinho = await consultarCarrinho(); // ESPERA A RESPOSTA DA FUNCAO consultarCarrinho()
+            //const qtdcarrinho = await consultarCarrinho(); // ESPERA A RESPOSTA DA FUNCAO consultarCarrinho()
             const id = dados.sub;
+            const data = new Date();
+            var dia = String(data.getDate()).padStart(2, '0');
+            var mes = String(data.getMonth() + 1).padStart(2, '0');
+            var ano = data.getFullYear();
+            var hora = data.getHours();
+            var min = data.getMinutes();
+            var sec = data.getSeconds();
+            const dataAtual = dia + mes + ano + hora + min + sec;
             try {
 
                 const data = {
+                    ID: dataAtual,
                     ID_produto: parseInt(IDproduto),
                     quantidade_produto: 1,
                     tamanho_produto: "M",
-                    id_cliente: id,
+                    ID_cliente: id,
                 };
 
-                fetch('./apiAdicionarCarrinho?quantidadeCarrinho=' + qtdcarrinho, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(data),
-                    })
+                fetch('./apiAdicionarCarrinho?quantidadeCarrinho=', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                })
                     .then((response) => response.json())
                     //.then(response => console.log(response.status))
                     .then((data) => {
@@ -229,6 +262,25 @@
                         const ocultarFormulario = document.getElementById("containerFormulario");
                         ocultarFormulario.style.display = "none";
                     })
+
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-bottom-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                Command: toastr["success"]("Produto adicionado ao carrinho!")
 
             } catch (error) {
                 console.log(error);
@@ -241,6 +293,7 @@
             loginmobile();
         }
     }
+
 </script>
 
 </html>

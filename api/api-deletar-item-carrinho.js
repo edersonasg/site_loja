@@ -12,15 +12,17 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 /////////////////////////////////////////////////////////////
 
-async function adicionarCarrinho(bodyRequest) {
+async function apagarItem(ID) {
     var params = {
         TableName: tableName,
-        Item: bodyRequest,
+        Key: {
+            'ID': ID
+          }
     };
 
     try {
-        await dynamodb.put(params).promise();
-        return bodyRequest;
+        await dynamodb.delete(params).promise();
+        //return dados;
     } catch (error) {
         console.log('erro', error);
         return false;
@@ -29,9 +31,9 @@ async function adicionarCarrinho(bodyRequest) {
 
 router.post('/', async(req, res) => {
     if (req.body) {
-      //  const carrinho = parseInt(req.query.quantidadeCarrinho) + 1;
-        const cadastro = await adicionarCarrinho(req.body);
-        return res.send(cadastro);
+        const ID = req.query.ID;
+        const adicionar = await apagarItem(ID,req.body);
+        return res.send(adicionar);
     }
 
     return res.status(500).json({ mensagem: "Item nao adicionado" });
