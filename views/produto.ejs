@@ -224,6 +224,44 @@
             .find(row => row.startsWith('jwt='))
 
 
+        var tamanho = document.getElementsByName('size');
+        for (var i = 0; i < tamanho.length; i++) {
+            if (tamanho[i].checked) {
+                if (tamanho[i].value == "tamanhopp") {
+                    var tam = "PP";
+                } else if (tamanho[i].value == "tamanhop") {
+                    var tam = "P";
+                } else if (tamanho[i].value == "tamanhom") {
+                    var tam = "M";
+                } else if (tamanho[i].value == "tamanhog") {
+                    var tam = "G";
+                }
+            }
+        }
+
+        if (tam == undefined) {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            Command: toastr["warning"]("Selecione o tamanho para adicionar ao carrinho!");
+            return
+        }
+
+
         if (perfil != undefined) {
             const dados = jwt_decode(perfil);
             const urlParams = new URLSearchParams(window.location.search);
@@ -244,7 +282,7 @@
                     ID: dataAtual,
                     ID_produto: parseInt(IDproduto),
                     quantidade_produto: 1,
-                    tamanho_produto: "M",
+                    tamanho_produto: tam,
                     ID_cliente: id,
                 };
 
@@ -286,6 +324,25 @@
                 console.log(error);
             }
         } else {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            Command: toastr["warning"]("Faça login para adicionar ao carrinho!");
+
             $('html, body').animate({
                 scrollTop: $("#menuMobile").offset().top
             }, -1000);

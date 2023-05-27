@@ -21,6 +21,7 @@
         "express": "^4.18.2",
         "js-cookie": "^3.0.5",
         "jsonwebtoken": "^9.0.0",
+        "mercadopago": "^1.5.16",
         "mysql2": "^3.2.0",
         "nodemon": "^2.0.21",
         "sequelize": "^6.29.3"

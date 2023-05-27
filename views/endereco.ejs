@@ -1,0 +1,130 @@
+<html lang="pt-br">
+
+<head>
+    <%- include('head.ejs') %>
+        <link rel="stylesheet" href="/css/style/endereco.css">
+</head>
+
+<body>
+    <%- include('nav.ejs') %>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <div class="container-fluid" id="containerEndereco">
+                        <form class="form">
+                            <h2>PREENCHA SUAS INFORMAÇÕES</h2>
+                            <p type="Nome Completo:"><input id="nome" type="text"
+                                    placeholder="Digite seu nome completo:" required></input>
+                            </p>
+                            <p type="CPF:"><input id="cpfEnd" type="text" placeholder="Digite seu CPF:" required
+                                    onchange="valiCPF(value);"></input>
+                            </p>
+                            <p type="Telefone:"><input id="telefoneEnd" type="tel" placeholder="Digite seu número:"
+                                    required></input>
+                            </p>
+                            <h3>DADOS DE ENDEREÇO</h3>
+                            <p type="CEP:"><input id="cepEnd" type="text" placeholder="Digite seu CEP:" required
+                                    onChange="buscarcepEnd(value);"></input>
+                            </p>
+                            <p type="Rua:"><input id="ruaEnd" placeholder="Digite o nome de sua rua:" required></input>
+                            </p>
+                            <p type="Número:"><input id="numeroEnd" placeholder="Digite o número de sua residência:"
+                                    required></input>
+                            </p>
+                            <p type="Cidade:"><input id="cidadeEnd" placeholder="Cidade:" required disabled=""></input>
+                            </p>
+                            <p type="UF:"><input id="ufEnd" placeholder="UF:" required></input>
+                            </p>
+                            <button class="cancelar" onclick="fecharlogin();">Cancelar</button>
+                            <button class="cadastrar" onclick="validarCadastro();">Cadastrar</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="detalhes">
+                        <p>Itens: -------------------------- R$ 389,90</p>
+                        <ul class="listaItens">
+                            <li>Camiseta Nike</li>
+                            <li>Bermuda Lacoste</li>
+                        </ul>
+                        </br>
+                        <p>Frete: -------------------------- R$ 15,90</p>
+                        <p>Total: -------------------------- R$ 00,00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $('#cpfEnd').mask('000.000.000-00');
+                $('#telefoneEnd').mask('(00)00000-0000');
+                $('#numeroEnd').mask('###0');
+                $('#cepEnd').mask('00000-000');
+            });
+
+            function valiCPF() {
+                const cpfBruto = document.getElementById("cpfEnd");
+                const cpf = cpfBruto.value.match(/\d/g).join("");
+                if (!cpf || cpf.length != 11 ||
+                    cpf == "00000000000" ||
+                    cpf == "11111111111" ||
+                    cpf == "22222222222" ||
+                    cpf == "33333333333" ||
+                    cpf == "44444444444" ||
+                    cpf == "55555555555" ||
+                    cpf == "66666666666" ||
+                    cpf == "77777777777" ||
+                    cpf == "88888888888" ||
+                    cpf == "99999999999") {
+                    cpfBruto.style.setProperty("--color", "red");
+                    cpfBruto.style.borderBottom = "2px solid red";
+                    cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+                    cpfBruto.value = ""
+                    return false
+                }
+                var soma = 0
+                var resto
+                for (var i = 1; i <= 9; i++)
+                    soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i)
+                resto = (soma * 10) % 11
+                if ((resto == 10) || (resto == 11)) resto = 0
+                if (resto != parseInt(cpf.substring(9, 10))) {
+                    cpfBruto.style.setProperty("--color", "red");
+                    cpfBruto.style.borderBottom = "2px solid red";
+                    cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+                    cpfBruto.value = ""
+                    return false
+                } else {
+                    soma = 0
+                    cpfBruto.style.setProperty("--color", "white");
+                    cpfBruto.style.borderBottom = "2px solid white";
+                }
+                for (var i = 1; i <= 10; i++)
+                    soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i)
+                resto = (soma * 10) % 11
+                if ((resto == 10) || (resto == 11)) resto = 0
+                if (resto != parseInt(cpf.substring(10, 11))) {
+                    cpfBruto.style.setProperty("--color", "red");
+                    cpfBruto.style.borderBottom = "2px solid red";
+                    cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+                    cpfBruto.value = ""
+                    return false
+                }
+                return true
+            }
+
+            async function buscarcepEnd(cep) {
+                const ceplimpo = cep.replace(/[^0-9]+/, '');
+
+                const url = 'https://viacep.com.br/ws/' + ceplimpo + '/json/';
+                const resposta = await fetch(url);
+                const body = await resposta.json();
+
+                document.getElementById("cidadeEnd").value = body.localidade;
+                document.getElementById("ufEnd").value = body.uf;
+            }
+        </script>
+</body>
+
+</html>

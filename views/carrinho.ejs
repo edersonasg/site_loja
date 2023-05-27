@@ -1,37 +1,7 @@
 <html lang="pt-br">
 
 <head>
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181818" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f3f3" />
-
-    <!-- These meta tags are Apple-specific, and set the web application to run in full-screen mode with a black status bar. Learn more at https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="PWA Starter" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
-    <!-- This tag is used by the PWA Starter CLI to identify template projects. Don't remove if you are using the CLI. -->
-    <meta name="pwa-starter-template-identity" content="pwa-starter" />
-    <link rel="apple-touch-icon" href="images/logo1.png">
-    <link rel="icon" sizes="196x196" href="images/logo1.png">
-
-    <!--pwa-->
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="/manifest.json">
-    <title>Pagina Home</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style/carrinho.css">
-    <link rel="stylesheet" href="/css/style/nav.css">
-    <link rel="stylesheet" href="/css/style/footer.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <%- include('head.ejs') %>
 </head>
 
 <body>
@@ -66,7 +36,12 @@
                         </div>
                     </div> -->
             </div>
-        </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <a href="/endereco" class="pagamento">Finalizar compra</a>
+                </div>
+            </div>
         </div>
 
         <%- include('footer.ejs') %>
@@ -83,7 +58,7 @@
                     const carrinho = body.length;
 
                     let car = ''
-                    for (i = 0; i <= carrinho-1; i++) {
+                    for (i = 0; i <= carrinho - 1; i++) {
                         car += '<div class="row prod">'
                         car += '<div class="col-4">'
                         car += '<img class="imagemproduto" src="https://bucketgarb.s3.us-east-2.amazonaws.com/' + body[i].ID_produto + '/produto1.png" alt="produto1">'
@@ -98,10 +73,10 @@
                         car += '<option selected value="1">1</option>'
                         car += '<option value="2">2</option>'
                         car += '<option value="3">3</option>'
-                        car += '</select><span id='+body[i].ID+' class="material-icons delete" onclick=apagarItem(id);>delete</span>'
+                        car += '</select><span id=' + body[i].ID + ' class="material-icons delete" onclick=apagarItem(id);>delete</span>'
                         car += '<p class="valor">R$ 159,99</p>'
                         car += '<p class="tamanho">Tam:'
-                        car += '<a class="tamanhoproduto">M</a>'
+                        car += '<a class="tamanhoproduto"> ' + body[i].tamanho_produto + '</a>'
                         car += '</p>'
                         car += '</div>'
                         car += '</div>'
@@ -112,14 +87,14 @@
 
                 }
 
-                async function apagarItem(id){
+                async function apagarItem(id) {
                     try {
-                        fetch('./apiDeletarItemCarrinho?ID='+id , {
-                        method: "POST",
-                    })
-                    window.location.reload();
+                        fetch('./apiDeletarItemCarrinho?ID=' + id, {
+                            method: "POST",
+                        })
+                        window.location.reload();
                     } catch (error) {
-                       console.log(error);
+                        console.log(error);
                     }
                 }
             </script>

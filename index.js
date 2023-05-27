@@ -18,6 +18,9 @@ const consultarCarrinho = require('./api/api-consultar-carrinho')
 const criarCliente = require('./api/api-criar-cliente')
 const adicionarCarrinho = require('./api/api-adicionar-carrinho')
 const deletarItemCarrinho = require('./api/api-deletar-item-carrinho')
+
+//   ROTA PAGAMENTO
+const pagamentoPedido = require('./api/api-pagamento')
     // const s3route = require('./api/api-consulta-s3')
     //  ROTA TESTE API
 
@@ -54,6 +57,12 @@ app.get('/perfil', (req, res) => {
 app.get('/login', (req, res) => {
     return res.render("login")
 });
+app.get('/endereco', (req, res) => {
+    return res.render("endereco")
+});
+app.get('/pagamento', (req, res) => {
+    return res.render("pagamento")
+});
 //ROTA DA API
 app.use('/usersAPI', usuarioRoute);
 // app.use('/s3teste', s3route);
@@ -69,6 +78,8 @@ app.use('/apiConsultaCarrinho', consultarCarrinho);
 app.use('/apiCriarCliente', criarCliente);
 app.use('/apiAdicionarCarrinho', adicionarCarrinho);
 app.use('/apiDeletarItemCarrinho', deletarItemCarrinho);
+// app.use PAGAMENTO
+app.use('/process_payment', pagamentoPedido);
 //LOG
 app.listen(port, () => (
     console.log('Servidor iniciado na porta' + port)

@@ -1,0 +1,19 @@
+.detalhes{
+    width: 30em;
+    margin: auto;
+    background: linear-gradient(180deg, rgba(3, 25, 6, 1) 0%, rgba(3, 66, 9, 1) 78%, rgba(0, 150, 6, 1) 100%);
+    color: white;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    border-radius: 2em;
+    margin-top: 5em;
+   box-shadow: 1px 1px 30px 0 black;;
+}
+.detalhes p{
+    margin-left: 3em;
+}
+.listaItens{
+    list-style: none;
+    padding-left: 3em;
+    margin-top: -1em;
+}
