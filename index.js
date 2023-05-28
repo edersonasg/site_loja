@@ -14,6 +14,7 @@ const filtroProduto = require('./api/api-filtro-produtos')
 const buscaProduto = require('./api/api=busca-produto')
 const buscaCliente = require('./api/api-verifica-cliente')
 const consultarCarrinho = require('./api/api-consultar-carrinho')
+const consultaCliente = require('./api/api-consulta-cliente')
     //  ROTA API DE CRIACAO
 const criarCliente = require('./api/api-criar-cliente')
 const adicionarCarrinho = require('./api/api-adicionar-carrinho')
@@ -74,6 +75,7 @@ app.use('/apiFiltro', filtroProduto);
 app.use('/apiBusca', buscaProduto);
 app.use('/apiBuscaCliente', buscaCliente);
 app.use('/apiConsultaCarrinho', consultarCarrinho);
+app.use('/apiConsultarCliente', consultaCliente);
 // app.use POST
 app.use('/apiCriarCliente', criarCliente);
 app.use('/apiAdicionarCarrinho', adicionarCarrinho);

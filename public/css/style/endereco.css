@@ -1,3 +1,4 @@
+
 .detalhes{
     width: 30em;
     margin: auto;
@@ -16,4 +17,113 @@
     list-style: none;
     padding-left: 3em;
     margin-top: -1em;
+}
+
+.pagamento{
+    text-decoration: none;
+    padding: 0.5rem 3.5rem;
+    font-family: 'Arimo', sans-serif;
+    font-weight: 600;
+    font-size: 1.1em;
+    background-color: #28a71f;
+    /* padding: 0.5em 4em; */
+    text-align: center;
+    color: white;
+    user-select: none;
+    border-radius: 0 2em 0 2em;
+    box-shadow: 2px 1px 20px black;
+    border: 1px solid green;
+    position: absolute;
+    right: 7em;
+    margin-top: 2em;
+}
+
+.pagamento:hover{
+    color: white;
+    box-shadow: 1px 0px 12px 7px #266e09,2px 1px 16px 7px #ffffff, 2px 1px 16px 7px #000000;
+    background: radial-gradient(circle, rgba(2, 55, 4, 1) 15%, rgba(3, 73, 5, 1) 46%, rgba(3, 97, 6, 1) 68%, rgba(0, 148, 6, 1) 100%);
+    transition: 0.5s all ease;
+}
+
+.formEndereco input::placeholder{
+    color: rgba(221, 207, 207, 0.801);
+}
+
+.formEndereco {
+    width: 40em;
+    background: linear-gradient(180deg, rgba(3, 25, 6, 1) 0%, rgba(3, 66, 9, 1) 78%, rgba(0, 150, 6, 1) 100%);
+    border-radius: 8px;
+    box-shadow: 0 0 40px -10px #000;
+    margin: calc(50vh - 220px) auto;
+    padding: 20px 30px;
+    max-width: calc(100vw - 40px);
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 0;
+    margin-top: 5em;
+}
+
+.formEndereco h2 {
+    margin: 10px 0;
+    padding-bottom: 10px;
+    color: white;
+    border-bottom: 3px solid white
+}
+
+.formEndereco h3 {
+    margin: 10px 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid white;
+    font-size: 1.5em;
+    margin-top: 3em;
+    color: white;
+}
+
+.formEndereco input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background: none;
+    outline: none;
+    resize: none;
+    border: 0;
+    font-family: 'Montserrat', sans-serif;
+    transition: all .3s;
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+.formEndereco input:focus {
+    border-bottom: 2px solid #78788c
+}
+
+.formEndereco p:before {
+    content: attr(type);
+    display: block;
+    margin: 28px 0 0;
+    font-size: 14px;
+    color: white
+}
+
+@media screen and (max-width: 720px) {
+    #containerEndereco{
+        height: 58em;
+    }
+    .detalhes {
+        width: 23em;
+        margin: auto;
+        background: linear-gradient(180deg, rgba(3, 25, 6, 1) 0%, rgba(3, 66, 9, 1) 78%, rgba(0, 150, 6, 1) 100%);
+        color: white;
+        padding-top: 1.5em;
+        padding-bottom: 1.5em;
+        border-radius: 2em;
+        margin-top: 7em;
+        box-shadow: 1px 1px 30px 0 black;
+    }
+    .pagamento{
+        right: 2em;
+    }
+    .det{
+        margin-bottom: 7em;
+    }
 }

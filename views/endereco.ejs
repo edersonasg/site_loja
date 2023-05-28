@@ -9,9 +9,9 @@
     <%- include('nav.ejs') %>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-6">
+                <div class="col-sm-12 col-md-6">
                     <div class="container-fluid" id="containerEndereco">
-                        <form class="form">
+                        <form class="formEndereco">
                             <h2>PREENCHA SUAS INFORMAÇÕES</h2>
                             <p type="Nome Completo:"><input id="nome" type="text"
                                     placeholder="Digite seu nome completo:" required></input>
@@ -35,96 +35,222 @@
                             </p>
                             <p type="UF:"><input id="ufEnd" placeholder="UF:" required></input>
                             </p>
-                            <button class="cancelar" onclick="fecharlogin();">Cancelar</button>
-                            <button class="cadastrar" onclick="validarCadastro();">Cadastrar</button>
                         </form>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="detalhes">
-                        <p>Itens: -------------------------- R$ 389,90</p>
-                        <ul class="listaItens">
-                            <li>Camiseta Nike</li>
-                            <li>Bermuda Lacoste</li>
-                        </ul>
-                        </br>
-                        <p>Frete: -------------------------- R$ 15,90</p>
-                        <p>Total: -------------------------- R$ 00,00</p>
+                <div class="col-sm-12 col-md-6">
+                    <div class="det">
+                        <div class="detalhes">
+                            <p>Itens: -------------------------- R$ 389,90</p>
+                            <ul class="listaItens">
+                                <li>Camiseta Nike</li>
+                                <li>Bermuda Lacoste</li>
+                            </ul>
+                            </br>
+                            <p>Frete: -------------------------- R$ 15,90</p>
+                            <p>Total: -------------------------- R$ 00,00</p>
+                        </div>
+                        <a class="pagamento">Finalizar compra</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <script>
-            $(document).ready(function () {
-                $('#cpfEnd').mask('000.000.000-00');
-                $('#telefoneEnd').mask('(00)00000-0000');
-                $('#numeroEnd').mask('###0');
-                $('#cepEnd').mask('00000-000');
-            });
+        <%- include('footer.ejs') %>
 
-            function valiCPF() {
-                const cpfBruto = document.getElementById("cpfEnd");
-                const cpf = cpfBruto.value.match(/\d/g).join("");
-                if (!cpf || cpf.length != 11 ||
-                    cpf == "00000000000" ||
-                    cpf == "11111111111" ||
-                    cpf == "22222222222" ||
-                    cpf == "33333333333" ||
-                    cpf == "44444444444" ||
-                    cpf == "55555555555" ||
-                    cpf == "66666666666" ||
-                    cpf == "77777777777" ||
-                    cpf == "88888888888" ||
-                    cpf == "99999999999") {
-                    cpfBruto.style.setProperty("--color", "red");
-                    cpfBruto.style.borderBottom = "2px solid red";
-                    cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
-                    cpfBruto.value = ""
-                    return false
+            <script>
+
+                $(document).ready(function () {
+                    $('#cpfEnd').mask('000.000.000-00');
+                    $('#telefoneEnd').mask('(00)00000-0000');
+                    $('#numeroEnd').mask('###0');
+                    $('#cepEnd').mask('00000-000');
+                });
+                carregarCliente()
+                async function carregarCliente() {
+                    const perfil = document.cookie
+                        .split('; ')
+                        .find(row => row.startsWith('jwt='))
+                    const dados = jwt_decode(perfil);
+
+                    const resposta = await fetch('./apiConsultarCliente?id=' + dados.sub);
+                    const body = await resposta.json();
                 }
-                var soma = 0
-                var resto
-                for (var i = 1; i <= 9; i++)
-                    soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i)
-                resto = (soma * 10) % 11
-                if ((resto == 10) || (resto == 11)) resto = 0
-                if (resto != parseInt(cpf.substring(9, 10))) {
-                    cpfBruto.style.setProperty("--color", "red");
-                    cpfBruto.style.borderBottom = "2px solid red";
-                    cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
-                    cpfBruto.value = ""
-                    return false
-                } else {
-                    soma = 0
-                    cpfBruto.style.setProperty("--color", "white");
-                    cpfBruto.style.borderBottom = "2px solid white";
+
+                function valiCPF() {
+                    const cpfBruto = document.getElementById("cpfEnd");
+                    const cpf = cpfBruto.value.match(/\d/g).join("");
+                    if (!cpf || cpf.length != 11 ||
+                        cpf == "00000000000" ||
+                        cpf == "11111111111" ||
+                        cpf == "22222222222" ||
+                        cpf == "33333333333" ||
+                        cpf == "44444444444" ||
+                        cpf == "55555555555" ||
+                        cpf == "66666666666" ||
+                        cpf == "77777777777" ||
+                        cpf == "88888888888" ||
+                        cpf == "99999999999") {
+                        cpfBruto.style.setProperty("--color", "red");
+                        cpfBruto.style.borderBottom = "2px solid red";
+                        cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+                        cpfBruto.value = ""
+                        return false
+                    }
+                    var soma = 0
+                    var resto
+                    for (var i = 1; i <= 9; i++)
+                        soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i)
+                    resto = (soma * 10) % 11
+                    if ((resto == 10) || (resto == 11)) resto = 0
+                    if (resto != parseInt(cpf.substring(9, 10))) {
+                        cpfBruto.style.setProperty("--color", "red");
+                        cpfBruto.style.borderBottom = "2px solid red";
+                        cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+                        cpfBruto.value = ""
+                        return false
+                    } else {
+                        soma = 0
+                        cpfBruto.style.setProperty("--color", "white");
+                        cpfBruto.style.borderBottom = "2px solid white";
+                    }
+                    for (var i = 1; i <= 10; i++)
+                        soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i)
+                    resto = (soma * 10) % 11
+                    if ((resto == 10) || (resto == 11)) resto = 0
+                    if (resto != parseInt(cpf.substring(10, 11))) {
+                        cpfBruto.style.setProperty("--color", "red");
+                        cpfBruto.style.borderBottom = "2px solid red";
+                        cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+                        cpfBruto.value = ""
+                        return false
+                    }
+                    return true
                 }
-                for (var i = 1; i <= 10; i++)
-                    soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i)
-                resto = (soma * 10) % 11
-                if ((resto == 10) || (resto == 11)) resto = 0
-                if (resto != parseInt(cpf.substring(10, 11))) {
-                    cpfBruto.style.setProperty("--color", "red");
-                    cpfBruto.style.borderBottom = "2px solid red";
-                    cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
-                    cpfBruto.value = ""
-                    return false
+
+                async function buscarcepEnd(cep) {
+                    const ceplimpo = cep.replace(/[^0-9]+/, '');
+
+                    const url = 'https://viacep.com.br/ws/' + ceplimpo + '/json/';
+                    const resposta = await fetch(url);
+                    const body = await resposta.json();
+
+                    document.getElementById("cidadeEnd").value = body.localidade;
+                    document.getElementById("ufEnd").value = body.uf;
                 }
-                return true
-            }
 
-            async function buscarcepEnd(cep) {
-                const ceplimpo = cep.replace(/[^0-9]+/, '');
+                async function validarCadastro() {
+                    const cpfBruto = document.getElementById("cpfEnd");
+                    const telefone = document.getElementById("telefoneEnd");
+                    const rua = document.getElementById("ruaEnd");
+                    const numero = document.getElementById("numeroEnd");
+                    const cep = document.getElementById("cepEnd")
+                    const cidade = document.getElementById("cidadeEnd");
+                    const uf = document.getElementById("ufEnd");
 
-                const url = 'https://viacep.com.br/ws/' + ceplimpo + '/json/';
-                const resposta = await fetch(url);
-                const body = await resposta.json();
+                    if (cpfBruto.value == "") {
+                        cpfBruto.style.setProperty("--color", "red");
+                        cpfBruto.style.borderBottom = "2px solid red";
+                    } else {
+                        cpfBruto.style.setProperty("--color", "white");
+                        cpfBruto.style.borderBottom = "2px solid white";
+                    }
+                    if (telefone.value == "") {
+                        telefone.style.setProperty("--color", "red");
+                        telefone.style.borderBottom = "2px solid red";
+                    } else {
+                        telefone.style.setProperty("--color", "white");
+                        telefone.style.borderBottom = "2px solid white";
+                    }
+                    if (rua.value == "") {
+                        rua.style.setProperty("--color", "red");
+                        rua.style.borderBottom = "2px solid red";
+                    } else {
+                        rua.style.setProperty("--color", "white");
+                        rua.style.borderBottom = "2px solid white";
+                    }
+                    if (numero.value == "") {
+                        numero.style.setProperty("--color", "red");
+                        numero.style.borderBottom = "2px solid red";
+                    } else {
+                        numero.style.setProperty("--color", "white");
+                        numero.style.borderBottom = "2px solid white";
+                    }
+                    if (cep.value == "") {
+                        cep.style.setProperty("--color", "red");
+                        cep.style.borderBottom = "2px solid red";
+                    } else {
+                        cep.style.setProperty("--color", "white");
+                        cep.style.borderBottom = "2px solid white";
+                    }
+                    if (cidade.value == "") {
+                        cidade.style.setProperty("--color", "red");
+                        cidade.style.borderBottom = "2px solid red";
+                    } else {
+                        cidade.style.setProperty("--color", "white");
+                        cidade.style.borderBottom = "2px solid white";
+                    }
+                    if (uf.value == "") {
+                        uf.style.setProperty("--color", "red");
+                        uf.style.borderBottom = "2px solid red";
+                    } else {
+                        uf.style.setProperty("--color", "white");
+                        uf.style.borderBottom = "2px solid white";
+                    }
 
-                document.getElementById("cidadeEnd").value = body.localidade;
-                document.getElementById("ufEnd").value = body.uf;
-            }
-        </script>
+                    const cpf = cpfBruto.value.match(/\d/g).join("");
+                    if (!cpf || cpf.length != 11 ||
+                        cpf == "00000000000" ||
+                        cpf == "11111111111" ||
+                        cpf == "22222222222" ||
+                        cpf == "33333333333" ||
+                        cpf == "44444444444" ||
+                        cpf == "55555555555" ||
+                        cpf == "66666666666" ||
+                        cpf == "77777777777" ||
+                        cpf == "88888888888" ||
+                        cpf == "99999999999") {
+                        cpfBruto.style.setProperty("--color", "red");
+                        cpfBruto.style.borderBottom = "2px solid red";
+                        cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+                        cpfBruto.value = ""
+                        return false
+                    }
+                    var soma = 0
+                    var resto
+                    for (var i = 1; i <= 9; i++)
+                        soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i)
+                    resto = (soma * 10) % 11
+                    if ((resto == 10) || (resto == 11)) resto = 0
+                    if (resto != parseInt(cpf.substring(9, 10))) {
+                        cpfBruto.style.setProperty("--color", "red");
+                        cpfBruto.style.borderBottom = "2px solid red";
+                        cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+                        cpfBruto.value = ""
+                        return false
+                    } else {
+                        soma = 0
+                        cpfBruto.style.setProperty("--color", "white");
+                        cpfBruto.style.borderBottom = "2px solid white";
+                    }
+                    for (var i = 1; i <= 10; i++)
+                        soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i)
+                    resto = (soma * 10) % 11
+                    if ((resto == 10) || (resto == 11)) resto = 0
+                    if (resto != parseInt(cpf.substring(10, 11))) {
+                        cpfBruto.style.setProperty("--color", "red");
+                        cpfBruto.style.borderBottom = "2px solid red";
+                        cpfBruto.placeholder = 'Seu CPF esta incorreto. : ' + cpfBruto.value;
+                        cpfBruto.value = ""
+                        return false
+                    }
+                    pagamento();
+                }
+
+                async function pagamento() {
+
+                }
+            </script>
 </body>
 
 </html>
